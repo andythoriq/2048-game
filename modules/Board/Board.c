@@ -1,5 +1,5 @@
 #include "Board.h"
-#include "Halaman_Lobby.h"
+#include "../Halaman_Lobby/Halaman_lobby.h"
 
 static int len = 0;
 
