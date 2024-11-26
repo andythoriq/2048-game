@@ -1,16 +1,23 @@
 #include "Board.h"
+#include "Halaman_Lobby.h"
 
 static int len = 0;
 
 void printBoard(Tile arr[4][4])
 {
+	system("cls");
+	int x_pos = (get_terminal_width('l')-33)/2;
+	int y_pos = (get_terminal_width('t') - 9)/2;
+	gotoxy(x_pos,y_pos);
+	
     int i, j, k, left_space, right_space, total_space = 7;
-
-    printf("\t\t\t\t\t---------------------------------\n");
+    
+    printf("---------------------------------\n");
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 4; j++) {
             if (j == 0) {
-                printf("\t\t\t\t\t|");
+            	gotoxy(x_pos, y_pos+1+(2*i));
+                printf("|");
             }
 
             int value = getValue(arr[i][j]);
@@ -45,11 +52,12 @@ void printBoard(Tile arr[4][4])
         }
 
         if (i != 3) {
-            printf("\n");
-            printf("\t\t\t\t\t---------------------------------\n");
+        	gotoxy(x_pos, y_pos+2+(2*i));
+            printf("---------------------------------\n");
         }
     }
-    printf("\n\t\t\t\t\t---------------------------------\n");
+    gotoxy(x_pos, y_pos + 8);
+    printf("---------------------------------\n");
 }
 
 // Function to find the length of a number (count of digits)

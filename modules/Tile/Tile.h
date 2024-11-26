@@ -1,5 +1,5 @@
-#ifndef TILE_H
-#define TILE_H
+#ifndef Tile_H
+#define Tile_H
 
 #include <string.h>
 

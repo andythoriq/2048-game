@@ -1,8 +1,7 @@
-#ifndef BOARD_H
-#define BOARD_H
+#ifndef Board_H
+#define Board_H
 
 #include <stdio.h>
-#include <stdlib.h>
 
 #include "../Tile/Tile.h"
 
