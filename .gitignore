@@ -53,3 +53,5 @@ dkms.conf
 
 # visual studio code config
 .vscode
+
+*.dev
