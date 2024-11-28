@@ -20,10 +20,11 @@ int main()
 	int key;
 	int selectedarrow = 0; //pertama-tama menunjuk opsi Start Game
 	int done = 0;
+	char choice = 'w';
+	bool is_repeat_program = true;
 	Tile tiles[4][4];
 	HANDLE thread;
 	
-	generateTiles(tiles);
 	
 	while(done == 0){
 		lobby_screen(selectedarrow);
@@ -54,8 +55,8 @@ int main()
 	        		CloseHandle(thread);
 	    			
 					//*************//
-					bool is_repeat_program = true;
-				    char choice = 'w';
+
+					generateTiles(tiles);
 				
 				    while (is_repeat_program) {
 				
@@ -68,6 +69,7 @@ int main()
 				
 				        if (choice == 'e') {
 				            is_repeat_program = false;
+							resetTiles(tiles);
 				        } else {
 				            move(choice, tiles);
 				        }
