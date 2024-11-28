@@ -5,7 +5,7 @@
 
 #include "../Tile/Tile.h"
 
-void findlen(int n);
+int findlen(int n);
 
 void printBoard(Tile arr[4][4]);
 
