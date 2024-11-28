@@ -20,10 +20,10 @@ int main()
 	int key;
 	int selectedarrow = 0; //pertama-tama menunjuk opsi Start Game
 	int done = 0;
-	Tile arr[4][4];
+	Tile tiles[4][4];
 	HANDLE thread;
 	
-	generateTiles(arr);
+	generateTiles(tiles);
 	
 	while(done == 0){
 		lobby_screen(selectedarrow);
@@ -59,7 +59,7 @@ int main()
 				
 				    while (is_repeat_program) {
 				
-				        printBoard(arr);
+				        printBoard(tiles);
 				
 				        printf("[tekan e untuk keluar]");
 				        choice = getch();
@@ -69,7 +69,7 @@ int main()
 				        if (choice == 'e') {
 				            is_repeat_program = false;
 				        } else {
-				            move(choice, arr);
+				            move(choice, tiles);
 				        }
 				        //***********//
 				    }

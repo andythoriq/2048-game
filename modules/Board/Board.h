@@ -7,6 +7,6 @@
 
 int findlen(int n);
 
-void printBoard(Tile arr[4][4]);
+void printBoard(Tile tiles[4][4]);
 
 #endif

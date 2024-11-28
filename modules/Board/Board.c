@@ -5,7 +5,7 @@
 // kami mengubah beberapa bagian seperti findlen, menambahkan warna, menengahkan papan, dll
 // menambah variable left dan right space
 
-void printBoard(Tile arr[4][4])
+void printBoard(Tile tiles[4][4])
 {
 	system("cls");
 	int x_pos = (get_terminal_width('l')-33)/2;
@@ -22,9 +22,9 @@ void printBoard(Tile arr[4][4])
                 printf("|");
             }
 
-            int value = getValue(arr[i][j]);
+            int value = getValue(tiles[i][j]);
             if (value != 0) {
-                findlen(value);
+                digit = findlen(value);
 
                 // jika 0, 2, 4, 8 maka digitnya adalah 1. jika 32, 64 maka digitnya adalah 2 ...
                 left_space = (total_space - digit) / 2;
@@ -35,7 +35,7 @@ void printBoard(Tile arr[4][4])
                     printf(" ");
                 }
 
-                printf("%s%d%s", getColor(arr[i][j]), value, AC_WHITE);
+                printf("%s%d%s", getColor(tiles[i][j]), value, AC_WHITE);
 
                 // Cetak spasi kanan
                 for (k = 0; k < right_space; k++) {
