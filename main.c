@@ -1,5 +1,5 @@
 #include "modules/Halaman_Lobby/Halaman_Lobby.h"
-#include "modules/Tile/Tile.h"
+#include "modules/Gameplay/Gameplay.h"
 #include "modules/Board/Board.h"
 
 DWORD WINAPI beepThread(LPVOID param){

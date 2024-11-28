@@ -18,7 +18,7 @@ typedef struct Tile
 #define AC_CYAN "\x1b[96m"
 #define AC_WHITE "\x1b[97m"
 
-void createTile(Tile * tile);
+void createTile(Tile * tile, int newValue);
 
 int getValue(Tile tile);
 
@@ -29,11 +29,5 @@ void setValue(Tile *tile, int newValue);
 void setColor(Tile *tile, char newColor[16]);
 
 void setValueAndColor(Tile *tile, int newValue);
-
-// pindahin ini ke modul pergerakan
-void move(char choice, Tile arr[4][4]);
-
-// pindahin ini ke modul tiles
-void generateTiles(Tile arr[4][4]);
 
 #endif
