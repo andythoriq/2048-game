@@ -5,8 +5,8 @@ void move(char choice, Tile arr[4][4])
 	system("cls");
 	int col, row, k, i, j, arr_before[4][4];
 
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
+    for (i = 0; i < 4; i++) {
+        for (j = 0; j < 4; j++) {
             arr_before[i][j] = getValue(arr[i][j]);
         }
     }
