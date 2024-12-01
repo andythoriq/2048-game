@@ -2,6 +2,7 @@
 #include "modules/Halaman_Tutorial/HowToPlay.h"
 #include "modules/Gameplay/Gameplay.h"
 #include "modules/Board/Board.h"
+#include "modules/GameWinOrLose/WinOrLose.h"
 
 DWORD WINAPI beepThread(LPVOID param){
 	intptr_t sound = (intptr_t)param;
@@ -73,6 +74,7 @@ int main()
 							resetTiles(tiles);
 				        } else {
 				            move(choice, tiles);
+							game_result(tiles);
 				        }
 				        //***********//
 				    }
