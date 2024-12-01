@@ -1,4 +1,5 @@
 #include "modules/Halaman_Lobby/Halaman_Lobby.h"
+#include "modules/Halaman_Tutorial/HowToPlay.h"
 #include "modules/Gameplay/Gameplay.h"
 #include "modules/Board/Board.h"
 
@@ -81,6 +82,7 @@ int main()
 	   				getchar();
     			}else if (selectedarrow == 2){
     				printf_center("HOW TO PLAY", 15);
+					HowToPlay();
     				getchar();
     			}else if (selectedarrow == 3){
     				printf_center("Terimakasih Sudah Bermain", 15);
