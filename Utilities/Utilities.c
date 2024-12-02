@@ -47,8 +47,6 @@ int get_terminal_width(char width){ //t = tinggi, l = lebar
 	}
 }
 
-
-
 int get_middle_pos(char pos){
 	if (pos == 'y'){	//jika memimnta midle pos y
 		int posisi_y = get_terminal_width('t')/2;		

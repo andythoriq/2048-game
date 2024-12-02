@@ -34,6 +34,7 @@ void HowToPlay() {
 	printf("\n");
 	
 	const char* text[] = { 
+	"                     ",	
 	"                     ",
 	"HOW TO PLAY GAME 2048",
 	"                     ",
@@ -51,10 +52,9 @@ void HowToPlay() {
 	"                                                                                     "
 	};
 	
-	for (i = 0; i < 15; i++) { // Mencetak Teks dalam bingkai
+	for (i = 0; i < 16; i++) { // Mencetak Teks dalam bingkai
 		gotoxy((get_terminal_width('l') - strlen(text[i]))/2, i+1);
 		printf("%s", text[i]);
 	}	
 	printf("\n");
-
 }

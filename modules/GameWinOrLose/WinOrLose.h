@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include "../Tile/Tile.h"
 #include "../Gameplay/Gameplay.h"
+#include "../../Utilities/Utilities.h"
 
 extern int win_number;
 
