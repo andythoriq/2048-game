@@ -12,7 +12,7 @@ int open_file (Player username[], char keyword[]) {
     int found = 0;  	//kunci unutk ditemukan atau tidak keyword pada file
     
     //variable untuk menampung hasil fscanf
-	char name[10];			
+	char name[9];			
 	int score, mnt, dtk;
 	
 	//******* program ******//

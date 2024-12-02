@@ -14,12 +14,16 @@
 
 #define UP_ARROW 72
 #define DOWN_ARROW 80
+#define RIGHT_ARROW 77
+#define LEFT_ARROW 75
 #define ENTER 13
+#define ESC 27
+#define BACKSPACE 8
 
 void lobby_screen (int selectedarrow);	//print halaman lobby awal
 
 void input_username_screen();			//print halaman input username
 
-void user_input_username(char username[]);				//modul untuk membuat tampilan saat input teks
+void username_input_check(char username[], char input, int *i, int *result);				//modul untuk membuat tampilan saat input teks
 
 #endif
