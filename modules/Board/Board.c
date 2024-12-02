@@ -63,6 +63,12 @@ void printBoard(Tile arr[4][4], int score, int total_move)
     }
     gotoxy(x_pos, y_pos + 8);
     printf("---------------------------------\n");
+    printf("TEKAN\n");
+    printf("W untuk bergerak ke ATAS\n");
+    printf("A untuk bergerak ke KIRI\n");
+    printf("S untuk bergerak ke BAWAH\n");
+    printf("D untuk bergerak ke KANAN\n");
+    printf("---------------------------------\n");
 }
 
 int findlen(int n)
