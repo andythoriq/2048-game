@@ -5,7 +5,7 @@
 
 typedef struct Tile
 {
-    char color[16];
+    char color[32];
     int value;
 } Tile;
 
@@ -26,7 +26,7 @@ const char * getColor(Tile tile);
 
 void setValue(Tile *tile, int newValue);
 
-void setColor(Tile *tile, char newColor[16]);
+void setColor(Tile *tile, char newColor[32]);
 
 void setValueAndColor(Tile *tile, int newValue);
 
