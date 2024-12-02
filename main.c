@@ -173,6 +173,7 @@ int main()
 			        //jika memilih e (EXIT GAME)
 			        if (choice == 'e' || choice == 'E') {					//opsi untuk mengakhiri game
 			            is_repeat_program = false;				//repitisi diakhiri
+						resetTiles(tiles); // reset tiles, jadi kondisi semula
 			            printf("\033[48;5;255m\033[30m");		//memberikan efek background
 			            
 			            //teks yang tampil
@@ -188,7 +189,7 @@ int main()
 					//jika memilih selain e (CONTINUE PLAYING)
 			        } else {
 			            move(choice, tiles);				//## memanggil modul untuk menggerakan papan (GAME LOGIC UTAMA)
-			            
+			            // game result
 			           play_sound(3);	//Membunyikan suara
 			        }
 			        //membersihkan layar//
@@ -217,6 +218,7 @@ int main()
     		}else if (selectedarrow == 2){
     			printf_center("HOW TO PLAY", 15);
     			
+				HowToPlay();
     			
     			//done
     			getchar();
