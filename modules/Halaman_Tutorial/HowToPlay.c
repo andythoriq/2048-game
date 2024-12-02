@@ -1,18 +1,17 @@
 #include "HowToPlay.h"
 
-
 void HowToPlay() {
 	
 	// Mengetahui Lebar dan Tinggi Terminal
-	//int lebar = get_terminal_width('l'); 
-	//int tinggi = get_terminal_width('t');
-	//printf("%d, %d", lebar, tinggi);
-	//printf("\n\n"); 
+	// int lebar = get_terminal_width('l'); 
+	// int tinggi = get_terminal_width('t');
+	// printf("%d, %d", lebar, tinggi); 
+	// printf("\n\n"); 
 	
 	int i; //deklarasi index
 	int x_pos = (get_terminal_width('l') - 90)/2;
 	for (i = x_pos; i <= x_pos + 90; i++) { // Membuat Bingkai Atas 
-		gotoxy(i, 0);
+		gotoxy(i, 1);
 		printf("=");
 	}
 	printf("\n");
@@ -33,8 +32,7 @@ void HowToPlay() {
 	}
 	printf("\n");
 	
-	const char* text[] = { 
-	"                     ",	
+	const char* text[] = {	
 	"                     ",
 	"HOW TO PLAY GAME 2048",
 	"                     ",
@@ -52,7 +50,7 @@ void HowToPlay() {
 	"                                                                                     "
 	};
 	
-	for (i = 0; i < 16; i++) { // Mencetak Teks dalam bingkai
+	for (i = 1; i < 16; i++) { // Mencetak Teks dalam bingkai
 		gotoxy((get_terminal_width('l') - strlen(text[i]))/2, i+1);
 		printf("%s", text[i]);
 	}	
