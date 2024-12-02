@@ -20,7 +20,7 @@ set(SOURCES
     modules/Halaman_Lobby/Halaman_lobby.c
     modules/Halaman_Tutorial/HowToPlay.c
     modules/Tile/Tile.c
-    util/util.c
+    Utilities/Utilities.c
 )
 
 # Add the executable
