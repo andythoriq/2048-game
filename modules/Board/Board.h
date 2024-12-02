@@ -4,6 +4,7 @@
 #include <stdio.h>
 
 #include "../Tile/Tile.h"
+#include "../../Utilities/Utilities.h"
 
 int findlen(int n);
 

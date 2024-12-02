@@ -13,7 +13,7 @@ int getValue(Tile tile)
 
 const char * getColor(Tile tile)
 {
-    static char colorCopy[16];
+    static char colorCopy[32];
     strncpy(colorCopy, tile.color, sizeof(colorCopy) - 1);
     colorCopy[sizeof(colorCopy) - 1] = '\0';
     return colorCopy;
@@ -24,7 +24,7 @@ void setValue(Tile *tile, int newValue)
     tile->value = newValue;
 }
 
-void setColor(Tile *tile, char newColor[16])
+void setColor(Tile *tile, char newColor[32])
 {
     strncpy(tile->color, newColor, sizeof(tile->color) - 1);
     tile->color[sizeof(tile->color) - 1] = '\0';

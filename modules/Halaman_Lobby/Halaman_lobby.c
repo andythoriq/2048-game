@@ -8,55 +8,6 @@
 
 //Sopian menambahkan modul baru, 2 modul untuk halaman input user name, yaitu : input_username_screen & user_input_username
 
-DWORD WINAPI beepThread(LPVOID sound){			//deklarasi Thread untuk suara Beep
-	int type = (int)(intptr_t)sound;
-	switch (type){
-		case 1:
-			Beep(400,300);
-			return 0;
-		case 2:
-			Beep(600,300);
-			return 0;
-		case 3:
-			Beep(1400,100);
-			return 0;
-	}
-}
-
-void play_sound(intptr_t type_sound){
-	HANDLE soundthread;															//membuat variable untuk HANDLE
-	soundthread = CreateThread(NULL,0, beepThread, (LPVOID)type_sound,0,NULL);	//memanggil thread
-	CloseHandle(soundthread);													//menutup Handle
-}
-
-int get_middle_pos(char pos){
-	if (pos == 'y'){	//jika memimnta midle pos y
-		int posisi_y = get_terminal_width('t')/2;		
-		return posisi_y;
-	}else if (pos == 'x'){	//jika meminta middle pos x
-		int posisi_x = get_terminal_width('l')/2;
-		return posisi_x;		
-	}
-}
-
-void printf_center (const char* text, int posisi_Y){
-	int posisi_X = (get_terminal_width('l') - strlen(text)) / 2;	//posisi X tepat di tengah2 halaman
-	gotoxy (posisi_X, posisi_Y);									//set cursor pada posisi x dan y
-	printf("%s\n", text);											//printf teks pada posisi ditentukan
-	//printf("%d ; %d", posisi_X, strlen(text));
-}
-
-void text_style(char text[], int style){
-	int i;
-	if (style == 1){
-		while(_kbhit() == 0){						//selama tidak ada input keyboard
-			printf("\033[2m%s", text);				//ANSI untuk text pudar
-			printf("\033[%dD", strlen(text));		//ANSI mengembalikan posisi kursor ke awal kalimat
-		}
-	}
-	printf("\033[0m");
-}
-
 void lobby_screen (int selectedarrow)
 {
 	system("cls"); //bersihkan layar

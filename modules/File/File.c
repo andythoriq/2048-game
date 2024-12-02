@@ -17,7 +17,7 @@ int open_file (Player username[], char keyword[]) {
 	
 	//******* program ******//
     // Membuka file "example.txt" untuk dibaca
-    file = fopen("Player_Score.txt", "a+");
+    file = fopen("Player_Score.txt", "r+");
 
     // Memeriksa apakah file berhasil dibuka
     if (file == NULL) {
@@ -49,6 +49,7 @@ int open_file (Player username[], char keyword[]) {
     }
 
     // Menutup file setelah selesai
+    rewind(file);
     fclose(file);
 }
 

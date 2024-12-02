@@ -2,6 +2,7 @@
 #include "modules/Halaman_Tutorial/HowToPlay.h"
 #include "modules/Gameplay/Gameplay.h"
 #include "modules/Board/Board.h"
+#include "modules/File/File.h"
 
 //Sopian menambahkan program main untuk bagian input username.
 // selain itu juga merapihkan beberaopa bagian program yang kurang baik
@@ -15,7 +16,7 @@ int main()
 	int selectedarrow = 0;			//Bagian text yang ditunjukan panah dan pudar
 	int done = 0;					//kunci untuk selesai atau belumnya program
 	int i;
-	char input_name[10] = "";		//Nama yang diinput player
+	char input_name[9];		//Nama yang diinput player
 	char temp_text[50];				//text temporer untuk menyimpan sementara stirng yang di copy
 	Tile tiles[4][4];				//Array dua dimensi sebagai letak posisi angka-angka pada saat game berjalan
 	//Kamus data Bingkai
@@ -24,9 +25,14 @@ int main()
 	int top_border;		//posisi y untuk border atas
 	int bottom_border; 	//posisi y untuk border bawah
 	
-	
-	
-	
+	////////////////////////////////////////////////
+	// ******* inisiasi array dan halaman ******* //
+	////////////////////////////////////////////////
+
+	for (i=0 ; i<=sizeof(input_name) ; i++){
+		input_name[0] = ' ';
+	}
+
 	generateTiles(tiles);
 	
 	while(done == 0){
@@ -59,7 +65,7 @@ int main()
 	        
 	        /*Opsi Play Game*/
 	    	if(selectedarrow == 0){
-	    		
+
 	    		/////////////////////////////////////////////////
 	    		//******** Awal Halaman Input Username ********//
 	    		/////////////////////////////////////////////////
@@ -74,13 +80,6 @@ int main()
 										
 					//*** menampilkan halaman ***//
 	    			input_username_screen();							//## memanggil modul untuk menampilakna halaman input user
-	    			
-	    			if (input_name[0] == '\0'){
-						printf_center("[press 'ENTER' to play as a guest]" , bottom_border + 2);
-					}else if(input_name[0] != '\0'){
-						gotoxy(1, bottom_border + 2);
-					printf("\033[K");
-					}
 					
 					//menerima input dari user//
 					gotoxy(left_border + 5, top_border + 4);			//memposisikan pada bagian x y tempat karakter muncul
@@ -127,7 +126,7 @@ int main()
 					//** jika memilih sebagai guest **//
 					}
 					if (input_name[0] == '\0'){
-						printf_center ("[press 'ENTER' to play as a Guest]", bottom_border + 4);
+						printf_center ("[press 'ENTER' to yes]", bottom_border + 4);
 						option = getch();
 						if (option == 13){
 							break;
