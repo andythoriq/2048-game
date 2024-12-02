@@ -1,0 +1,9 @@
+D:\C_Projects\2048-game\main.c;D:\C_Projects\2048-game\build\game2048.dir\Debug\main.obj
+D:\C_Projects\2048-game\modules\Board\Board.c;D:\C_Projects\2048-game\build\game2048.dir\Debug\Board.obj
+D:\C_Projects\2048-game\modules\File\File.c;D:\C_Projects\2048-game\build\game2048.dir\Debug\File.obj
+D:\C_Projects\2048-game\modules\Gameplay\Gameplay.c;D:\C_Projects\2048-game\build\game2048.dir\Debug\Gameplay.obj
+D:\C_Projects\2048-game\modules\GameWinOrLose\WinOrLose.c;D:\C_Projects\2048-game\build\game2048.dir\Debug\WinOrLose.obj
+D:\C_Projects\2048-game\modules\Halaman_Lobby\Halaman_lobby.c;D:\C_Projects\2048-game\build\game2048.dir\Debug\Halaman_lobby.obj
+D:\C_Projects\2048-game\modules\Halaman_Tutorial\HowToPlay.c;D:\C_Projects\2048-game\build\game2048.dir\Debug\HowToPlay.obj
+D:\C_Projects\2048-game\modules\Tile\Tile.c;D:\C_Projects\2048-game\build\game2048.dir\Debug\Tile.obj
+D:\C_Projects\2048-game\util\util.c;D:\C_Projects\2048-game\build\game2048.dir\Debug\util.obj
