@@ -24,6 +24,9 @@ int main()
 	int right_border; 	//posisi x untuk border kanan
 	int top_border;		//posisi y untuk border atas
 	int bottom_border; 	//posisi y untuk border bawah
+
+	int score = 0;       // score yang disimpan dalam database
+	int total_move = 0;	 // total move yang disimpan dalam database
 	
 	////////////////////////////////////////////////
 	// ******* inisiasi array dan halaman ******* //
@@ -164,7 +167,7 @@ int main()
 				//selama is_repeat_program == true, maka game berjalan
 			    while (is_repeat_program) {
 					
-			        printBoard(tiles);						//## memanggil modul untuk membuat papan
+			        printBoard(tiles, score, total_move);						//## memanggil modul untuk membuat papan
 			        printf("[press 'e' to finish the Game]");
 			        
 			        //Pilihan sesuai input keyboard//
@@ -187,9 +190,9 @@ int main()
 						}
 					//jika memilih selain e (CONTINUE PLAYING)
 			        } else {
-			            move(choice, tiles); //## memanggil modul untuk menggerakan papan (GAME LOGIC UTAMA)
-			            game_result(tiles); // game result
-			            play_sound(3);	//Membunyikan suara
+			            move(choice, tiles, &score, &total_move);				//## memanggil modul untuk menggerakan papan (GAME LOGIC UTAMA)
+			            game_result(tiles);// game result
+			           	play_sound(3);	//Membunyikan suara
 			        }
 			        //membersihkan layar//
 			        system("cls");
