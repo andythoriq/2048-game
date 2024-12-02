@@ -1,4 +1,5 @@
 #include "modules/Halaman_Lobby/Halaman_Lobby.h"
+#include "modules/Halaman_Tutorial/HowToPlay.h"
 #include "modules/Gameplay/Gameplay.h"
 #include "modules/Board/Board.h"
 
