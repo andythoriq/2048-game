@@ -191,8 +191,8 @@ int main()
 					//jika memilih selain e (CONTINUE PLAYING)
 			        } else {
 			            move(choice, tiles, &score, &total_move);				//## memanggil modul untuk menggerakan papan (GAME LOGIC UTAMA)
-			            // game result
-			           play_sound(3);	//Membunyikan suara
+			            game_result(tiles);// game result
+			           	play_sound(3);	//Membunyikan suara
 			        }
 			        //membersihkan layar//
 			        system("cls");

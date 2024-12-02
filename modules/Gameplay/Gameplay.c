@@ -1,4 +1,5 @@
 #include "Gameplay.h"
+#include "../GameWinOrLose/WinOrLose.h"
 
 void move(char choice, Tile tiles[4][4], int *score, int *total_move)
 {
