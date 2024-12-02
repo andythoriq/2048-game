@@ -1,11 +1,10 @@
 #include "Board.h"
-#include "../Halaman_Lobby/Halaman_lobby.h"
 
 // kami mengambil referensi untuk printBoard dari https://www.geeksforgeeks.org
 // kami mengubah beberapa bagian seperti findlen, menambahkan warna, menengahkan papan, dll
 // menambah variable left dan right space
 
-void printBoard(Tile tiles[4][4])
+void printBoard(Tile arr[4][4])
 {
 	system("cls");
 	int x_pos = (get_terminal_width('l')-33)/2;
@@ -22,7 +21,7 @@ void printBoard(Tile tiles[4][4])
                 printf("|");
             }
 
-            int value = getValue(tiles[i][j]);
+            int value = getValue(arr[i][j]);
             if (value != 0) {
                 digit = findlen(value);
 
@@ -35,7 +34,7 @@ void printBoard(Tile tiles[4][4])
                     printf(" ");
                 }
 
-                printf("%s%d%s", getColor(tiles[i][j]), value, AC_WHITE);
+                printf("%s%d%s", getColor(arr[i][j]), value, AC_WHITE);
 
                 // Cetak spasi kanan
                 for (k = 0; k < right_space; k++) {
