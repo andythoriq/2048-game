@@ -26,6 +26,9 @@ int main()
 	int right_border; 	//posisi x untuk border kanan
 	int top_border;		//posisi y untuk border atas
 	int bottom_border; 	//posisi y untuk border bawah
+
+	int score = 0;       // score yang disimpan dalam database
+	int total_move = 0;	 // total move yang disimpan dalam database
 	
 	////////////////////////////////////////////////
 	// ******* inisiasi array dan halaman ******* //
@@ -185,7 +188,7 @@ int main()
 					}
 				}
 	   			//--------------------------------------------------//
-			    //*********** akhir Halaman input Username *********//
+			    //*********** Akhir Halaman input Username *********//
 			    //--------------------------------------------------//
 	    			
 				///////////////////////////////////////////////
@@ -202,17 +205,17 @@ int main()
 					//selama is_repeat_program == true, maka game berjalan
 					while (is_repeat_program) {
 						
-						printBoard(tiles);						//## memanggil modul untuk membuat papan
-						printf("[press 'e' to finish the Game]");
+						printBoard(tiles, score, total_move);						//## memanggil modul untuk membuat papan
+			        	printf("[press 'e' to finish the Game]");
 						
 						//Pilihan sesuai input keyboard//
 						choice = getch();
 						//jika memilih e (EXIT GAME)
 						if (choice == 'e' || choice == 'E') {					//opsi untuk mengakhiri game
-							is_repeat_program = false;				//repitisi diakhiri
-							resetTiles(tiles); // reset tiles, jadi kondisi semula
+							is_repeat_program = false;							//repitisi diakhiri
+							resetTiles(tiles); 									// reset tiles, jadi kondisi semula
+
 							printf("\033[48;5;255m\033[30m");		//memberikan efek background
-							
 							//teks yang tampil
 							printf_center("ARE YOU SURE WANT TO FINISH?", ((get_terminal_width('t') - 9)/2) + 3);
 							printf_center("[press 'e' to cancel]", ((get_terminal_width('t') - 9)/2)+5);
@@ -225,9 +228,9 @@ int main()
 							}
 						//jika memilih selain e (CONTINUE PLAYING)
 						} else {
-							move(choice, tiles);				//## memanggil modul untuk menggerakan papan (GAME LOGIC UTAMA)
-							// game result
-						play_sound(3);	//Membunyikan suara
+							move(choice, tiles, &score, &total_move);				//## memanggil modul untuk menggerakan papan (GAME LOGIC UTAMA)
+							game_result(tiles);// game result
+							play_sound(3);	//Membunyikan suara
 						}
 						//membersihkan layar//
 						system("cls");

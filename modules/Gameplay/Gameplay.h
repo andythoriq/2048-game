@@ -12,7 +12,7 @@
 extern int score;
 extern int total_move;
 
-void move(char choice, Tile tiles[4][4]);
+void move(char choice, Tile tiles[4][4], int *score, int *total_move);
 
 void generateTiles(Tile tiles[4][4]);
 

@@ -8,13 +8,14 @@ typedef struct{	//struct player memuat data username untuk di manipulasi file
 	char name[9];
 	int highsocre;
 	char duration[5];
+	int high_total_move;
 } Player;	//P nya gede
 
 DWORD WINAPI beepThread(LPVOID sound);
 
 void play_sound(intptr_t TYPE_sound);
 
-int get_middle_y();						//memperoleh posisi tepat ditengah-tengah y
+int get_middle_pos(char pos);						//memperoleh posisi tepat ditengah-tengah y
 
 void printf_center (const char* text, int posisi_Y);	//untuk keperluan memprint text tepat berada di tengah-tengah halaman
 
