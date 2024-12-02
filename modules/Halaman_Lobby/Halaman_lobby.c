@@ -4,27 +4,6 @@
 #define DOWN_ARROW 80
 #define ENTER 13
 
-int get_terminal_width(char width){ //t = tinggi, l = lebar
-    CONSOLE_SCREEN_BUFFER_INFO csbi;
-    if (width == 'l'){
-    	int lebar;
-	    if (GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi)) {
-	        lebar = csbi.srWindow.Right - csbi.srWindow.Left + 1;
-	    } else {
-	        lebar = 80; // Default jika gagal
-	    }
-	    return lebar;
-	}else if (width == 't'){
-		int tinggi;
-		if (GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi)) {
-	    	tinggi = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
-	    } else {
-	        tinggi = 80; // Default jika gagal
-	    }
-	    return tinggi;
-	}
-}
-
 int get_middle_pos(char pos){
 	if (pos == 'y'){
 		int posisi_y = get_terminal_width('t')/2;
@@ -35,13 +14,7 @@ int get_middle_pos(char pos){
 	}
 }
 
-void gotoxy (int x, int y){
-	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	COORD pos;
-	pos.X = x;
-	pos.Y = y;
-	SetConsoleCursorPosition(hConsole, pos);
-}
+
 
 void printf_center (const char* text, int posisi_Y){
 	int posisi_X = (get_terminal_width('l') - strlen(text)) / 2;

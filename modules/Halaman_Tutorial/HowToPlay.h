@@ -5,9 +5,11 @@
 #include <stdio.h>
 #include <string.h>
 
-void gotoxy(int x, int y);
+#include "../../util/util.h"
 
-int get_terminal_width(char width);
+// void gotoxy(int x, int y);
+
+// int get_terminal_width(char width);
 
 void HowToPlay();
 

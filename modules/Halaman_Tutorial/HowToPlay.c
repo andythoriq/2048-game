@@ -1,34 +1,5 @@
 #include "HowToPlay.h"
 
-// TODO: jadikan gotoxy kedalam saty modul yang sama
-void gotoxy(int x, int y) { //Mendapatkan koordinat x dan y 
-	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	COORD pos;
-	pos.X = x; 
-	pos.Y = y;
-	SetConsoleCursorPosition(hConsole, pos);
-}
-
-int get_terminal_width(char width) { //t = tinggi, l = lebar
-    CONSOLE_SCREEN_BUFFER_INFO csbi; // Mencari lebar dan tinggi terminal
-    int tinggi;
-    if (width == 'l') {
-    	int lebar;
-	    if (GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi)) {
-	        lebar = csbi.srWindow.Right - csbi.srWindow.Left + 1;
-	    } else {
-	        lebar = 80; // Default jika gagal
-	    }
-	    return lebar;
-	} else if (width == 't') {
-		if (GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi)) {
-	    	tinggi = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
-	    } else {
-	        tinggi = 80; // Default jika gagal
-	    }
-		return (tinggi);
-	}
-}
 
 void HowToPlay() {
 	
@@ -42,7 +13,7 @@ void HowToPlay() {
 	int x_pos = (get_terminal_width('l') - 90)/2;
 	for (i = x_pos; i <= x_pos + 90; i++) { // Membuat Bingkai Atas 
 		gotoxy(i, 0);
-		printf("*");
+		printf("=");
 	}
 	printf("\n");
 	
@@ -58,7 +29,7 @@ void HowToPlay() {
 	
 	for (i = x_pos; i <= x_pos + 90; i++) { // Membuat Bingkai Bawah
 		gotoxy(i, 16);
-		printf("*");
+		printf("=");
 	}
 	printf("\n");
 	
@@ -85,5 +56,5 @@ void HowToPlay() {
 		printf("%s", text[i]);
 	}	
 	printf("\n");
-	return 0;
+
 }
