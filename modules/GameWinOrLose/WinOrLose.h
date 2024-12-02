@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include "../Tile/Tile.h"
+#include "../Gameplay/Gameplay.h"
 
 extern int win_number;
 

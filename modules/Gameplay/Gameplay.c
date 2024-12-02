@@ -1,4 +1,5 @@
 #include "Gameplay.h"
+#include "../GameWinOrLose/WinOrLose.h"
 
 // ubah ini menjadi global variabel di main atau masukkan ke dalam attribute User di main
 int score = 0;
