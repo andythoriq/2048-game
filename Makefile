@@ -6,11 +6,13 @@ CFLAGS = -Wall -g
 SRC_DIR = modules
 SOURCES = main.c \
            $(SRC_DIR)/Board/Board.c \
+           $(SRC_DIR)/File/File.c \
            $(SRC_DIR)/Gameplay/Gameplay.c \
            $(SRC_DIR)/GameWinOrLose/WinOrLose.c \
            $(SRC_DIR)/Halaman_Lobby/Halaman_lobby.c \
            $(SRC_DIR)/Halaman_Tutorial/HowToPlay.c \
-           $(SRC_DIR)/Tile/Tile.c
+           $(SRC_DIR)/Tile/Tile.c \
+		   Utilities/Utilities.c
 
 # Object files
 OBJECTS = $(SOURCES:.c=.o)
