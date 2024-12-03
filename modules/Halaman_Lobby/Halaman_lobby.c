@@ -105,51 +105,67 @@ void input_username_screen()
 	//getchar();
 }
 
-void username_input_check(char username[], char input, int *i, int *result)
+void username_input_check(char username[], int *result)
 {
 	//******* Program Modul ******//
-    printf("\033[?25h");			//ANSI untuk memunculkan posisi kursor
+	int space_indeks;
+    int i = 0;
+	
+	//******* Program Modul ******//
+    printf("\033[?25h");		//ANSI untuk memunculkan posisi kursor
     
-	//jika input = backspace//
-	if (input == BACKSPACE){		
-		if (*i == 0){				//jika semua karakter telah dihapus, backspace tidak terjadi
-		}else if (i != 0){			//jika ada karakter sebelumnya, maka karakter tersebut akan dihapus
-			username[*i-1] = ' ';	//mengisi array yang dihapus dengan NULL
-			printf("\033[2D");		//mengembalikan indeks ke beberapa kolom ke belakang dengan ASCII
-			printf("_");
-			printf("\033[1D");
-			*i = *i - 1;
+    while(1){					//itterasi menunggu input
+    
+		char input = getch();	//mendapatkan input tanpa enter
+		
+		//jika input = backspace//
+		if (input == BACKSPACE){		
+			if (i == 0){			//jika semua karakter telah dihapus, backspace tidak terjadi
+			}else if (i != 0){		//jika ada karakter sebelumnya, maka karakter tersebut akan dihapus
+				username[i-1] = ' ';	//mengisi array yang dihapus dengan space
+				printf("\033[2D");		//mengembalikan indeks ke beberapa kolom ke belakang dengan ASCII
+				printf("_");
+				printf("\033[1D");
+				i--;
+			}
+			
+		//jika input sudah mencapai batas 10 karakter//	
+		} else if (i == 10 && input != ENTER){	
+			
+		//Jika input ENTER, maka selesai//	
+		} else if (input == ENTER){
+			//Jika enter diposisi awal
+			if (i == 0){
+				username[0] = '\0';			// mengisi array username dengan NULL
+			}				
+			break;
+			
+		//Jika memilih ESC	
+		}else if (input == ESC){
+			*result = ESC;
+			break;
+
+		//menghalangi keluaran input tombol TAB DAN ARROW
+		}else if (input == 0 || input == 224){
+			input = getch();
+			if (input == UP_ARROW || input == DOWN_ARROW || input == LEFT_ARROW || input == RIGHT_ARROW){
+				continue;
+			}
+		}else if (input == 9){
+			continue;
+
 		}
-	
-	//jika input sudah mencapai batas 10 karakter//	
-	} else if (*i == 10 && input != ENTER){	
-
-	//Jika input ENTER, maka selesai//	
-	} else if (input == ENTER){
-		//Jika enter diposisi awal
-		if (*i == 0){
-			username[0] = ' ';			// mengisi array username dengan NULL
-		}				
-		*result = ENTER;
-
-	//menghindari menekan, arrow, dan tab	
-	}else if (input == 0 || input == 224){
-		getch();
-		if (input == LEFT_ARROW || input == RIGHT_ARROW || input == UP_ARROW || input == DOWN_ARROW){ //ASCII untuk tombol arrow
+		else{
+			printf("%c ", input);	//meanmpilkan character yang baru ditekan ke layar
+			username[i] = input;	//membasukan kedalam array untuk nantinya diparsing
+			i++;			
 		}
-	}else if (input == 9){ 	//ASCII untuk tombol tab
-	
-	//jika input ESC
-	}else if (input == ESC){
-		*result = ESC;
-
-	//Jikaa Input Character
-	}else{
-		printf("%c ", input);		//meanmpilkan character yang bAru ditekan ke layar		
-		username[*i] = input;
-		*i = *i + 1;
 	}
-
+	space_indeks = 9 - i;
+	//mengisi sisa aarray dengan space kosong
+	for (space_indeks ; space_indeks <= 9 ; space_indeks++){
+		username[space_indeks] = ' ';
+	}
 	printf("\033[?25l");		//menghilangkan tapmilan posisi kursor
 }
 

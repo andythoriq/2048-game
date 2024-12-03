@@ -1,36 +1,25 @@
 #include "HowToPlay.h"
 
 void HowToPlay() {
-	
-	// Mengetahui Lebar dan Tinggi Terminal
-	// int lebar = get_terminal_width('l'); 
-	// int tinggi = get_terminal_width('t');
-	// printf("%d, %d", lebar, tinggi); 
-	// printf("\n\n"); 
-	
+
 	int i; //deklarasi index
 	int x_pos = (get_terminal_width('l') - 90)/2;
-	for (i = x_pos; i <= x_pos + 90; i++) { // Membuat Bingkai Atas 
-		gotoxy(i, 1);
-		printf("=");
-	}
-	printf("\n");
-	
 	int y_pos = (get_terminal_width('t') - 16)/2; 
-	for (i = y_pos; i <= y_pos + 16; i++) { // Membuat Bingkai Kiri
-		gotoxy(15, i-7);
-		printf("*");
-	}
-	for (i = y_pos; i <= y_pos + 16; i++) { // Membuat Bingkai Kanan
-		gotoxy(105, i-7);
-		printf("*");
-	}
-	
-	for (i = x_pos; i <= x_pos + 90; i++) { // Membuat Bingkai Bawah
-		gotoxy(i, 16);
+
+	for (i = x_pos; i <= x_pos + 90; i++) { // Membuat Bingkai Atas dan bawah
+		gotoxy(i, y_pos);
+		printf("=");
+		gotoxy(i, y_pos + 16);
 		printf("=");
 	}
 	printf("\n");
+
+	for (i = y_pos + 1; i <= y_pos + 16 - 1; i++) { // Membuat Bingkai kiri dan kanan
+		gotoxy(x_pos, i);
+		printf("*");
+		gotoxy(x_pos + 90, i);
+		printf("*");
+	}
 	
 	const char* text[] = {	
 	"                     ",
@@ -51,7 +40,7 @@ void HowToPlay() {
 	};
 	
 	for (i = 1; i < 16; i++) { // Mencetak Teks dalam bingkai
-		gotoxy((get_terminal_width('l') - strlen(text[i]))/2, i+1);
+		gotoxy((get_terminal_width('l') - strlen(text[i]))/2, i+2);
 		printf("%s", text[i]);
 	}	
 	printf("\n");

@@ -4,7 +4,7 @@
 // kami mengubah beberapa bagian seperti findlen, menambahkan warna, menengahkan papan, dll
 // menambah variable left dan right space
 
-void printBoard(Tile arr[4][4], int score, int total_move)
+void printBoard(Tile tiles[4][4], int *score, int *total_move)
 {
 	system("cls");
 	int x_pos = (get_terminal_width('l')-33)/2;
@@ -12,11 +12,6 @@ void printBoard(Tile arr[4][4], int score, int total_move)
 	gotoxy(x_pos,y_pos);
 	
     int i, j, k, left_space, right_space, digit, total_space = 7;
-
-    printf("---------------------------------\n");
-
-    printf("SCORE : %d\n", score);
-    printf("MOVE  : %d\n", total_move);
     
     printf("---------------------------------\n");
     for (i = 0; i < 4; i++) {
@@ -26,7 +21,7 @@ void printBoard(Tile arr[4][4], int score, int total_move)
                 printf("|");
             }
 
-            int value = getValue(arr[i][j]);
+            int value = getValue(tiles[i][j]);
             if (value != 0) {
                 digit = findlen(value);
 
@@ -39,7 +34,7 @@ void printBoard(Tile arr[4][4], int score, int total_move)
                     printf(" ");
                 }
 
-                printf("%s%d%s", getColor(arr[i][j]), value, AC_WHITE);
+                printf("%s%d%s", getColor(tiles[i][j]), value, AC_WHITE);
 
                 // Cetak spasi kanan
                 for (k = 0; k < right_space; k++) {
@@ -62,12 +57,6 @@ void printBoard(Tile arr[4][4], int score, int total_move)
         }
     }
     gotoxy(x_pos, y_pos + 8);
-    printf("---------------------------------\n");
-    printf("TEKAN\n");
-    printf("W untuk bergerak ke ATAS\n");
-    printf("A untuk bergerak ke KIRI\n");
-    printf("S untuk bergerak ke BAWAH\n");
-    printf("D untuk bergerak ke KANAN\n");
     printf("---------------------------------\n");
 }
 

@@ -15,7 +15,7 @@ int main()
 	int key, option;				//Kunci untuk opsi yang dipilih
 	char input_user;				//variable untuk menampung input user	
 	int selectedarrow = 0;			//Bagian text yang ditunjukan panah dan pudar
-	int done = 0;					//kunci untuk selesai atau belumnya program
+	int done;						//kunci untuk selesai atau belumnya program
 	int i;
 	int result;						//variable sementara untuk hasil pengeecekan void
 	char input_name[9];				//Nama yang diinput player
@@ -40,8 +40,9 @@ int main()
 
 	generateTiles(tiles);
 	
+	done = 0;
 	while(done == 0){
-		
+		system("cls || clear");
 		/////////////////////////////////////////
 		// ******** Halaman Lobby Awal ********//
 		/////////////////////////////////////////
@@ -62,7 +63,7 @@ int main()
 	            selectedarrow = (selectedarrow + 1) % 4; // ketika menekan arrow turun
 	        }
 	        
-	    /*Memilih salah satu opsi*/
+	    /*Jika menekan ENTER, Maka memilih salah satu opsi*/
 	    }else if (key == ENTER){
 	    	system("cls");
 	    	
@@ -76,6 +77,8 @@ int main()
 	    		/////////////////////////////////////////////////
 	    	
 				//*** memulai program ***//
+
+				//Key digunakan untuk kembali ke lobby atau tidak
 				key = 1;
 				while (key == 1){
 	    			//inisiasi posisi border
@@ -90,36 +93,34 @@ int main()
 					//menampilkan teks press to enter as a guest jika input kosong
 					printf_center("empty the input to play as a guest", bottom_border + 2);
 
-					//menerima input dari user//
-					i = 0;	
-					result = -1;												//indeks untuk posisi character pada array nama yang diinpnut
-					while (1){
-						gotoxy(left_border + 5 + 2*i, top_border + 4);			//memposisikan pada bagian x y tempat karakter muncu
-						input_user = getch();	//mendapatkan input tanpa enter
-						username_input_check(input_name, input_user, &i, &result);		//## memanggil modul input_user_name
+					//menerima input dari user//	
 
+					while (1){	/*selesai jika mennekan ENTER atau ESC*/
+
+						gotoxy(left_border + 5, top_border + 4);		//memposisikan pada bagian x y tempat karakter muncu
+						username_input_check(input_name, &result);		//## memanggil modul untuk menginput dan memeriksa hasil inputan
 						if (result == ESC){
-							key = 0;    //Key 0 untuk keluar dari loop input user dan kembali ke lobby
-							break;
+							key = 0;	
+							break;							//key 0 artinya tidak akan masauk ke halaman game
 						}else if (result == ENTER){
-							key = 1;	//key 1 untuk selesai input dan lanjut ke game
+							key = 1;
 							break;
 						}
-						result = -1;
-					}
-					//mengisi struct name dengan array
-					for (i = 0; i <=9 ; i++){
-						strcpy(username[0].name,input_name);
-					}
-					//mengisi sisa array dengan space kosong
-					for (i ; i <= 9 ; i++){
-						username[0].name[i] = ' ';
+						//jika mengisi dengan character, maka akan di assign ke input_name
 					}
 
-					gotoxy(1, bottom_border + 2);
+					//mengisi struct name dengan array
+					for (i = 0; i <=10 ; i++){
+						if (input_name[i] != '\n'){
+							username[0].name[i] = input_name[i];
+						}
+					}
+	
+					gotoxy(1, bottom_border + 2);			//membersihkan teks pada bawah border
 					printf("\033[K");						
 					
-					if (key == 1){
+					if (key == 1){ /*jika key aktif, maka program berlanjut*/
+
 						/*** Memeriksa username terdaftar atau tidak ***/
 						int is_found = open_file(username, input_name);		//memanggil modul open file untuk mencari username pada file Player_Score.txt
 							
@@ -174,10 +175,6 @@ int main()
 							printf("\033[K");	
 						}
 					}
-					else if (key == 0){
-						//keluar loop input dan kembali ke lobby utama
-						break;
-					}
 					//kembali keatas...
 
 					play_sound(2);	//membunyikan sound efek
@@ -205,7 +202,7 @@ int main()
 					//selama is_repeat_program == true, maka game berjalan
 					while (is_repeat_program) {
 						
-						printBoard(tiles, score, total_move);						//## memanggil modul untuk membuat papan
+						printBoard(tiles, &score, &total_move);						//## memanggil modul untuk membuat papan
 			        	printf("[press 'e' to finish the Game]");
 						
 						//Pilihan sesuai input keyboard//
@@ -229,8 +226,8 @@ int main()
 						//jika memilih selain e (CONTINUE PLAYING)
 						} else {
 							move(choice, tiles, &score, &total_move);				//## memanggil modul untuk menggerakan papan (GAME LOGIC UTAMA)
-							game_result(tiles);// game result
-							play_sound(3);	//Membunyikan suara
+							game_result(tiles);										//## memanggil modul game result
+							play_sound(3);											//Membunyikan suara
 						}
 						//membersihkan layar//
 						system("cls");
@@ -243,6 +240,7 @@ int main()
 					//----------------------------------------------//
 					//*********** akhir Halaman Game Utama *********//
 					//----------------------------------------------//
+
 				}else if (key == 0){
 					//tidak mengrun halaman game, lalu kembali ke lobby
 				}

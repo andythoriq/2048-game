@@ -24,6 +24,6 @@ void lobby_screen (int selectedarrow);	//print halaman lobby awal
 
 void input_username_screen();			//print halaman input username
 
-void username_input_check(char username[], char input, int *i, int *result);				//modul untuk membuat tampilan saat input teks
+void username_input_check(char username[], int *result);				//modul untuk membuat tampilan saat input teks
 
 #endif

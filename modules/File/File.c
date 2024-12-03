@@ -8,11 +8,11 @@ int open_file (Player username[], char keyword[]) {
 	//******** Deklarasi variable lokal ********//
     FILE *file;  		// Pointer ke file dengan variable file
     char line[23];  	// Array untuk menyimpan hasil bacaan setiap baris file
-    char keyname[9];	// string sementara untuk menyimpan username untuk dibandingkan dengan keyword
+    char keyname[10];	// string sementara untuk menyimpan username untuk dibandingkan dengan keyword
     int found = 0;  	//kunci unutk ditemukan atau tidak keyword pada file
     
     //variable untuk menampung hasil fscanf
-	char name[9];			
+	char name[10];			
 	int score, mnt, dtk;
 	
 	//******* program ******//
@@ -22,7 +22,7 @@ int open_file (Player username[], char keyword[]) {
     // Memeriksa apakah file berhasil dibuka
     if (file == NULL) {
         printf("Error opening file!\n");
-        return;
+        return 0;
     }
 
     // Membaca file baris per baris
