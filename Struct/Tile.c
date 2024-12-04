@@ -1,3 +1,6 @@
+#include <string.h>
+#include <stdbool.h>
+#include <time.h>
 #include "Tile.h"
 
 void createTile(Tile * tile, int newValue)
@@ -36,13 +39,13 @@ void setValueAndColor(Tile *tile, int newValue)
     if (newValue == 8) {
         setColor(tile, AC_WHITE);
     } else if (newValue == 16) {
-        setColor(tile, AC_CYAN); 
+        setColor(tile, AC_YELLOW); 
     } else if (newValue == 32) {
-        setColor(tile, AC_GREEN);
+        setColor(tile, AC_YELLOW);
     } else if (newValue == 64) {
-        setColor(tile, AC_YELLOW);
+        setColor(tile, AC_CYAN);
     } else if (newValue == 128) {
-        setColor(tile, AC_YELLOW);
+        setColor(tile, AC_GREEN);
     } else if (newValue == 256) {
         setColor(tile, AC_BLUE);
     } else if (newValue == 512) {
@@ -53,5 +56,48 @@ void setValueAndColor(Tile *tile, int newValue)
         setColor(tile, AC_RED);
     } else {
         setColor(tile, AC_BLACK);
+    }
+}
+
+void generateTiles(Tile tiles[4][4])
+{
+	int i, j;
+    for (i = 0; i < 4; i++) {
+        for (j = 0; j < 4; j++) {
+            createTile(&tiles[i][j], 0);
+        }
+    }
+
+    fillNumberInRandomPosition(tiles);
+    fillNumberInRandomPosition(tiles);
+}
+
+void resetTiles(Tile tiles[4][4])
+{
+    int i, j;
+    for (i = 0; i < 4; i++) {
+        for (j = 0; j < 4; j++) {
+            setValueAndColor(&tiles[i][j], 0);
+        }
+    }
+}
+
+void fillNumberInRandomPosition(Tile tiles[4][4])
+{
+    int x, y = 0, number = 2;
+
+    bool isValid = false;
+
+    while (!isValid)
+    {
+        // get random position
+        x = rand() % 4;
+        y = rand() % 4;
+
+        // cek apakah pada posisi x y kosong
+        if (getValue(tiles[y][x]) == 0) {
+            setValue(&tiles[y][x], number);
+            isValid = true;
+        }
     }
 }

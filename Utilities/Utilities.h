@@ -4,13 +4,6 @@
 #include <windows.h>
 #include <stdio.h>
 
-typedef struct{	//struct player memuat data username untuk di manipulasi file
-	char name[9];
-	int highsocre;
-	char duration[5];
-	int high_total_move;
-} Player;	//P nya gede
-
 DWORD WINAPI beepThread(LPVOID sound);
 
 void play_sound(intptr_t TYPE_sound);

@@ -1,7 +1,8 @@
-#include "Gameplay.h"
-#include "../GameWinOrLose/WinOrLose.h"
+#include "../Struct/Tile.h"
+#include "../Struct/Player.h"
+#include "Movement.h"
 
-void move(char choice, Tile tiles[4][4], int *score, int *total_move)
+void move(char choice, Tile tiles[4][4], Player *p)
 {
 	system("cls");
 	int col, row, k, i, j, arr_before[4][4];
@@ -30,7 +31,7 @@ void move(char choice, Tile tiles[4][4], int *score, int *total_move)
                     if (getValue(tiles[row][col]) == getValue(tiles[row + 1][col]) && getValue(tiles[row][col]) != 0) {
                         setValueAndColor(&tiles[row][col], getValue(tiles[row][col]) * 2);
                         // hitung score
-                        *score += getValue(tiles[row][col]);
+                        setHighscore(p, getHighscore(p) + getValue(tiles[row][col]));
                         setValueAndColor(&tiles[row + 1][col], 0);
                     }
                 }
@@ -63,7 +64,7 @@ void move(char choice, Tile tiles[4][4], int *score, int *total_move)
                     if (getValue(tiles[row][col]) == getValue(tiles[row][col - 1]) && getValue(tiles[row][col]) != 0) {
                         setValueAndColor(&tiles[row][col], getValue(tiles[row][col]) * 2);
                         // hitung score
-                        *score += getValue(tiles[row][col]);
+                        setHighscore(p, getHighscore(p) + getValue(tiles[row][col]));
                         setValueAndColor(&tiles[row][col - 1], 0);
                     }
                 }
@@ -96,7 +97,7 @@ void move(char choice, Tile tiles[4][4], int *score, int *total_move)
                     if (getValue(tiles[row][col]) == getValue(tiles[row - 1][col]) && getValue(tiles[row][col]) != 0) {
                         setValueAndColor(&tiles[row][col], getValue(tiles[row][col]) * 2);
                         // hitung score
-                        *score += getValue(tiles[row][col]);
+                        setHighscore(p, getHighscore(p) + getValue(tiles[row][col]));
                         setValueAndColor(&tiles[row - 1][col], 0);
                     }
                 }
@@ -129,7 +130,7 @@ void move(char choice, Tile tiles[4][4], int *score, int *total_move)
                     if (getValue(tiles[row][col]) == getValue(tiles[row][col + 1]) && getValue(tiles[row][col]) != 0) {
                         setValueAndColor(&tiles[row][col], getValue(tiles[row][col]) * 2);
                         // hitung score
-                        *score += getValue(tiles[row][col]);
+                        setHighscore(p, getHighscore(p) + getValue(tiles[row][col]));
                         setValueAndColor(&tiles[row][col + 1], 0);
                     }
                 }
@@ -151,53 +152,10 @@ void move(char choice, Tile tiles[4][4], int *score, int *total_move)
         for (j = 0; j < 4; j++) {
             if (arr_before[i][j] != getValue(tiles[i][j])) {
                 // tambah total move (gerakan yang valid)
-                *total_move += 1;
+                setHighmove(p, getHighmove(p) + 1);
                 fillNumberInRandomPosition(tiles);
                 return;
             }
-        }
-    }
-}
-
-void generateTiles(Tile tiles[4][4])
-{
-	int i, j;
-    for (i = 0; i < 4; i++) {
-        for (j = 0; j < 4; j++) {
-            createTile(&tiles[i][j], 0);
-        }
-    }
-
-    fillNumberInRandomPosition(tiles);
-    fillNumberInRandomPosition(tiles);
-}
-
-void resetTiles(Tile tiles[4][4])
-{
-    int i, j;
-    for (i = 0; i < 4; i++) {
-        for (j = 0; j < 4; j++) {
-            setValueAndColor(&tiles[i][j], 0);
-        }
-    }
-}
-
-void fillNumberInRandomPosition(Tile tiles[4][4])
-{
-    int x, y = 0, number = 2;
-
-    bool isValid = false;
-
-    while (!isValid)
-    {
-        // get random position
-        x = rand() % 4;
-        y = rand() % 4;
-
-        // cek apakah pada posisi x y kosong
-        if (getValue(tiles[y][x]) == 0) {
-            setValue(&tiles[y][x], number);
-            isValid = true;
         }
     }
 }

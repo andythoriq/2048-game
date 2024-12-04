@@ -1,4 +1,9 @@
-#include "HowToPlay.h"
+#include <stdio.h>
+#include <string.h>
+
+#include "../Utilities/Utilities.h"
+
+#include "View_Tutorial.h"
 
 void HowToPlay() {
 	

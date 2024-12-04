@@ -1,3 +1,9 @@
+#include <stdbool.h>
+#include <stdio.h>
+
+#include "../Struct/Tile.h"
+#include "../Utilities/Utilities.h"
+
 #include "WinOrLose.h"
 
 int win_number = 2048;

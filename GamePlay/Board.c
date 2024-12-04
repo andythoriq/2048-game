@@ -1,10 +1,16 @@
+#include <stdio.h>
+
+#include "../Struct/Tile.h"
+#include "../Struct/Player.h"
+#include "../Utilities/Utilities.h"
+
 #include "Board.h"
 
 // kami mengambil referensi untuk printBoard dari https://www.geeksforgeeks.org
 // kami mengubah beberapa bagian seperti findlen, menambahkan warna, menengahkan papan, dll
 // menambah variable left dan right space
 
-void printBoard(Tile arr[4][4], int score, int total_move)
+void printBoard(Tile arr[4][4], Player *p)
 {
 	system("cls");
 	int x_pos = (get_terminal_width('l')-33)/2;
@@ -15,8 +21,8 @@ void printBoard(Tile arr[4][4], int score, int total_move)
 
     printf("---------------------------------\n");
 
-    printf("SCORE : %d\n", score);
-    printf("MOVE  : %d\n", total_move);
+    printf("SCORE : %d\n", getHighscore(p));
+    printf("MOVE  : %d\n", getHighmove(p));
     
     printf("---------------------------------\n");
     for (i = 0; i < 4; i++) {
