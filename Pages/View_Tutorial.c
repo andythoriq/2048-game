@@ -5,8 +5,8 @@
 
 #include "View_Tutorial.h"
 
-void HowToPlay() {
-
+void View_Tutorial() 
+{
 	int i; //deklarasi index
 	int x_pos = (get_terminal_width('l') - 90)/2;
 	int y_pos = (get_terminal_width('t') - 16)/2; 
@@ -14,7 +14,7 @@ void HowToPlay() {
 	for (i = x_pos; i <= x_pos + 90; i++) { // Membuat Bingkai Atas dan bawah
 		gotoxy(i, y_pos);
 		printf("=");
-		gotoxy(i, y_pos + 16);
+		gotoxy(i, y_pos + 16 + 1);
 		printf("=");
 	}
 	printf("\n");
@@ -44,9 +44,17 @@ void HowToPlay() {
 	"                                                                                     "
 	};
 	
-	for (i = 1; i < 16; i++) { // Mencetak Teks dalam bingkai
-		gotoxy((get_terminal_width('l') - strlen(text[i]))/2, i+2);
+	for (i = 1; i < 15; i++) { // Mencetak Teks dalam bingkai
+		gotoxy((get_terminal_width('l') - strlen(text[i]))/2, y_pos+i+2);
 		printf("%s", text[i]);
 	}	
 	printf("\n");
+	
+	printf_center ("[press 'ENTER' to return]", y_pos + 16 + 3 );
+
+	if ( getch() == ENTER){
+		play_sound(2);
+		return;
+	}else{
+	}
 }

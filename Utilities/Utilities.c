@@ -73,3 +73,20 @@ void text_style(char text[], int style){
 	}
 	printf("\033[0m");
 }
+
+void selectedarrow_text (int *selectedarrow, int *key){
+	
+	*key = getch();
+	if (*key == 0 || *key == 224) { 		// Deteksi tombol arrow pada keyboard
+	    *key = getch();
+	       
+	    play_sound(1);
+	        
+	    /*Kontrol atas dan bawah*/
+	    if(*key == UP_ARROW || *key == RIGHT_ARROW) {
+			*selectedarrow = (*selectedarrow - 1 + 4) % 4; // ketikan menekan arrow atas
+	    }else if (*key == DOWN_ARROW || *key == LEFT_ARROW) {
+	        *selectedarrow = (*selectedarrow + 1) % 4; // ketika menekan arrow turun
+	    }
+	}
+}

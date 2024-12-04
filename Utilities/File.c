@@ -3,56 +3,91 @@
 //menambahkan manipulasi file yang sudah direncanakan
 //Sopian menambahkan : modul open file
 
-int open_file (Player username[], char keyword[]) {
-	
-	//******** Deklarasi variable lokal ********//
-    FILE *file;  		// Pointer ke file dengan variable file
-    char line[23];  	// Array untuk menyimpan hasil bacaan setiap baris file
-    char keyname[10];	// string sementara untuk menyimpan username untuk dibandingkan dengan keyword
-    int found = 0;  	//kunci unutk ditemukan atau tidak keyword pada file
-    
-    //variable untuk menampung hasil fscanf
-	char name[10];			
-	int score, mnt, dtk;
-	
-	//******* program ******//
-    // Membuka file "example.txt" untuk dibaca
-    file = fopen("Player_Score.txt", "r+");
+// Fungsi untuk membaca/mencari data berdasarkan username
+void open_file_username(Player *player, const char *targetUsername, int *is_found) 
+{
+    FILE *file;
+    Player temp; 
 
-    // Memeriksa apakah file berhasil dibuka
+    file = fopen("Player_Score.txt", "a+");
     if (file == NULL) {
-        printf("Error opening file!\n");
-        return 0;
+        printf("error opening file!");
+        *is_found = -1;
+        return;
     }
 
-    // Membaca file baris per baris
-    while (fgets(line, sizeof(line), file)) {
-    	sscanf(line, "%s ", keyname);									//memeriksa username nya saja dan diassign ke keyname
-        //Mencari apakah keyword ada di dalam baris
-        if (strcmp(keyname, keyword) == 0) {
-        	fseek(file, -strlen(line), SEEK_CUR);						//mengembalikan posisi pointer pada file ke sebelah kiri baris
-            fscanf (file, "%s %d %d:%d", name, &score, &mnt, &dtk);		//melakukan scan file dan memasukannya ke variable lokal
-            
-            //Assignment data ke Struct Player
-            strcpy (username[0].name,name);
-            username[0].highsocre = score;
-            sprintf(username[0].duration, "%d:%d", mnt, dtk);
-			
-			//Kunci ditemukan
-			found = 1;	
-			return 1;	//ditemukan
-		}
-	}
-    //Jika keyword username tidak ditemukan
-    if (!found) {
-    	return 0;		//tidak ditemukan
+    // Cari username di dalam file
+    while (fscanf(file, "%s %d %d %d %d %d", temp.username, &temp.highscore, &temp.highmove, &temp.duration, &temp.totalwin, &temp.totallose) != EOF) {
+        if (strcmp(temp.username, targetUsername) == 0) {
+            // Jika username ditemukan
+            *player = temp; // Salin data ke output parameter
+            *is_found = 1;
+            break;
+        }
     }
-
-    // Menutup file setelah selesai
     rewind(file);
     fclose(file);
+
+    if (!*is_found) {
+        // Jika username tidak ditemukan, buat data baru
+        *is_found = 0;
+    }
 }
 
-//void create_username ();
+void add_newplayer_username (Player *player, const char *targetUsername) 
+{
+    FILE *file; 
 
+    file = fopen ("Player_Score.txt", "a+");
 
+    if (file == NULL){
+        printf ("Error opening file!");
+        return;
+    }
+
+    strcpy(player->username, targetUsername);
+    player->highscore = 0;
+    player->highmove = 0;
+    player->duration = 0;
+    player->totalwin = 0;
+    player->totallose = 0; 
+
+    sort_file_playerscore(*player) ;
+}
+
+// Fungsi untuk menambahkan data baru dan menjaga agar file tetap terurut
+void sort_file_playerscore(Player newPlayer) 
+{
+    FILE *file = fopen("Player_Score.txt", "a+");
+    FILE *tempFile = fopen("tempFile.txt", "w");
+    Player temp;
+    int added = 0;
+
+    if (file == NULL || tempFile == NULL) {
+        printf("error opening file!");
+        return;
+    }
+
+    // Salin data lama ke file sementara, sambil menambahkan data baru secara terurut
+    while (fscanf(file, "%s %d %d %d %d %d", temp.username, &temp.highscore, &temp.highmove, &temp.duration, &temp.totalwin, &temp.totallose) != EOF) {
+        if (!added && newPlayer.highscore > temp.highscore) {
+            // Tambahkan data baru jika highscore lebih besar
+            fprintf(tempFile, "%s %d %d %d %d %d\n", newPlayer.username, newPlayer.highscore, newPlayer.highmove, newPlayer.duration, newPlayer.totalwin, newPlayer.totallose);
+            added = 1;
+        }
+        // Salin data lama
+        fprintf(tempFile, "%s %d %d %d %d %d\n", temp.username, temp.highscore, temp.highmove, temp.duration, temp.totalwin, temp.totallose);
+    }
+
+    // Jika data baru belum ditambahkan (karena highscore paling kecil), tambahkan di akhir
+    if (!added) {
+        fprintf(tempFile, "%s %d %d %d %d %d\n", newPlayer.username, newPlayer.highscore, newPlayer.highmove, newPlayer.duration, newPlayer.totalwin, newPlayer.totallose);
+    }
+
+    fclose(file);
+    fclose(tempFile);
+
+    // Ganti file asli dengan file sementara
+    remove("Player_Score.txt");
+    rename("tempFile.txt", "Player_Score.txt");
+}

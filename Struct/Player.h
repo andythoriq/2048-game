@@ -13,6 +13,8 @@ typedef struct Player
     int totallose;
 } Player;
 
+void createPlayer(Player *player, char username[10], int highscore, int highmove, int currentscore, int currentmove, int duration, int totalwin, int totallose);
+
 // Getter
 const char *getUsername(const Player *p);
 int getHighscore(const Player *p);

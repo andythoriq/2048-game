@@ -1,6 +1,18 @@
 #include <string.h>
 #include "player.h"
 
+
+void createPlayer(Player *player, char username[10], int highscore, int highmove, int currentscore, int currentmove, int duration, int totalwin, int totallose) {
+    setUsername(player, username);
+    setHighscore(player, highscore);
+    setHighmove(player, highmove);
+    setScore(player, currentscore);
+    setMove(player, currentmove);
+    setDuration(player, duration);
+    setTotalWin(player, totalwin);
+    setTotalLose(player, totallose);
+}
+
 // Getter implementations
 const char *getUsername(const Player *p) {
     return p->username;
@@ -24,6 +36,12 @@ int getMove(const Player *p) {
 
 int getDuration(const Player *p) {
     return p->duration;
+}
+
+const char * getConvertetDuration(const Player *p)
+{
+    // convert int seconds to MM:SS
+    return "05:50";
 }
 
 int getTotalWin(const Player *p) {

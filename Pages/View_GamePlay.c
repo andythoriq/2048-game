@@ -1,29 +1,57 @@
+#include "View_GamePlay.h"
+#include "../GamePlay/Movement.h"
+#include "../GamePlay/WinOrLose.h"
+#include "../Struct/Player.h"
+#include "../Struct/Tile.h"
+#include "../Utilities/Utilities.h"
+#include "../Utilities/File.h"
 
-
-
-// initialize
-// ...
-
-
-
-
-void View_GamePlay()
+void View_GamePlay(Tile tiles[4][4], Player *player)
 {
-    char choice;
-
-    // clear board
-
-    // initialize board
-
-    do {
-        printBoard();
-        choice = input_choice();
-        moveBoard(choice, tiles, player);
-    } while (choice != 'E' || choice != 'e' || choice != EXIT || choice != ESC) {
-        printBoard();
-        choice = input_choice();
-        moveBoard(choice, tiles, player);
-    }
+    //***** Deklarasi Kamus data *****//
+    bool is_repeat_program = true;
+    char choice = 'w';
     
+    //***** Memulai Program *****//
+    generateTiles(tiles);						//## memanggil modul untuk mengisi array dua dimensi
+    
+    //selama is_repeat_program == true, maka game berjalan
+    while (is_repeat_program) {
+        
+        printBoard(tiles, player);						//## memanggil modul untuk membuat papan
+        printf("[press 'e' to finish the Game]");
+        
+        //Pilihan sesuai input keyboard//
+        choice = getch();
+        //jika memilih e (EXIT GAME)
+        if (choice == 'e' || choice == 'E') {					//opsi untuk mengakhiri game
+        
+            printf("\033[48;5;255m\033[30m");		//memberikan efek background
+            //teks yang tampil
+            printf_center("ARE YOU SURE WANT TO FINISH?", ((get_terminal_width('t') - 9)/2) + 3);
+            printf_center("[press 'ENTER' to yes]", ((get_terminal_width('t') - 9)/2)+5);
+            printf("\033[0m");						// mengembalikan setingan default teks
+            
+            choice = getch();				//memilih benar keluar atau tidak
+            if ( choice == ENTER){			//jika menekan enter
+                is_repeat_program = false;	//repitisi diakhiri	
+                resetTiles(tiles); 			// reset tiles, jadi kondisi semula
+            }else{
+                is_repeat_program = true;	//repetisi diulangi						
+            }								
+        
+        //jika memilih selain e (CONTINUE PLAYING)
+        } else {
+            move(choice, tiles, &player);				//## memanggil modul untuk menggerakan papan (GAME LOGIC UTAMA)
+            game_result(tiles, &player);										//## memanggil modul game result
+            play_sound(3);											//Membunyikan suara
+        }
+        //membersihkan layar//
+        system("cls");
+        //kembali keatas......
+    }
+    //Jika memilih EXIT GAME//
+    play_sound(2);
+    resetTiles(tiles);						//## memanggil modul untuk mereset board game seperti semula
     return;
 } 

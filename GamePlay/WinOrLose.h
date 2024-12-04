@@ -7,7 +7,7 @@
 
 extern int win_number;
 
-void game_result(Tile tiles[4][4]);
+void game_result(Tile tiles[4][4], Player *p);
 
 bool isGameOver(Tile tiles[4][4]);
 

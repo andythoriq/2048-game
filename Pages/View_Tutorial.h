@@ -1,6 +1,6 @@
 #ifndef HOWTOPLAY_H
 #define HOWTOPLAY_H
 
-void HowToPlay();
+void View_Tutorial();
 
 #endif
