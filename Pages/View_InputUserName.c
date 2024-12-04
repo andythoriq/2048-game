@@ -8,7 +8,7 @@ void halaman_login(Player *player, int *nextkey)
 	while (is_repeat_program == 1){
 		input_user_screen(&*player, &*nextkey);
 		if (*nextkey == 0 || *nextkey == 1){
-			break;
+			is_repeat_program = 0;
 		}if (*nextkey == -1){
 			is_repeat_program = 1;
 		}
@@ -35,6 +35,7 @@ void input_user_screen(Player *player , int *nextkey)
 	printf_center("empty the input to play as a guest", bottom_border + 3);
 
 	//menerima input dari user//							
+
 	while (1){
 		gotoxy(left_border + 5, top_border + 5);		//memposisikan pada bagian x y tempat karakter muncul
 		username_input_check(input_name, &result);		//## memanggil modul untuk menginput dan memeriksa hasil inputan
@@ -45,8 +46,8 @@ void input_user_screen(Player *player , int *nextkey)
 			*nextkey = 1;
 			break;
 		}
-		//jika mengisi karakter, akan di assign ke array input name di dalam modul diatas.
 	}
+	//jika mengisi karakter, akan di assign ke array input name di dalam modul diatas.
 
 	gotoxy(1, bottom_border + 3);			//membersihkan bacaan pada bawah border
 	printf("\033[K");						
@@ -137,7 +138,7 @@ void username_input_check(char input_name[], int *result)
 		} else if (i == 10 && input != ENTER){	
 			
 		//Jika input ENTER, maka selesai//	
-		} else if (input == ENTER){
+		} else if (input == ENTER && input != ESC){
 			//Jika enter diposisi awal
 			if (i == 0){
 				input_name[0] = ' ';			// mengisi array username dengan space
@@ -146,7 +147,7 @@ void username_input_check(char input_name[], int *result)
 			break;
 			
 		//Jika memilih ESC	
-		}else if (input == ESC){
+		}else if (input == ESC && input != ENTER){
 			*result = 27;
 			break;
 
@@ -216,6 +217,8 @@ void username_found_result (Player *player, char input_name[], int *nextkey)
 			*nextkey = -1;	
 		
 		}
+	}else if (is_found == -1){
+		//kondisi jika file tidak ditemukan//
 	}
 	if (input_name[0] == ' '){	
 	//** jika memilih sebagai guest **//
@@ -224,9 +227,10 @@ void username_found_result (Player *player, char input_name[], int *nextkey)
 		if (option == 13){
 			*nextkey = 1;
 			//bermain sebagai guest tanpa save data
+		}else{
+			*nextkey = -1;
+			gotoxy(1, bottom_border + 3);				//mengapus text 'press enter to play as a guest
+			printf("\033[K");	
 		}
-		*nextkey = -1;
-		gotoxy(1, bottom_border + 3);				//mengapus text 'press enter to play as a guest
-		printf("\033[K");	
 	}
 }

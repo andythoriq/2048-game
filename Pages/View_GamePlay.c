@@ -5,6 +5,7 @@
 #include "../Struct/Tile.h"
 #include "../Utilities/Utilities.h"
 #include "../Utilities/File.h"
+#include "../GamePlay/Board.h"
 
 void View_GamePlay(Tile tiles[4][4], Player *player)
 {
@@ -42,8 +43,8 @@ void View_GamePlay(Tile tiles[4][4], Player *player)
         
         //jika memilih selain e (CONTINUE PLAYING)
         } else {
-            move(choice, tiles, &player);				//## memanggil modul untuk menggerakan papan (GAME LOGIC UTAMA)
-            game_result(tiles, &player);										//## memanggil modul game result
+            move(choice, tiles, &*player);				//## memanggil modul untuk menggerakan papan (GAME LOGIC UTAMA)
+            game_result(tiles, &*player);										//## memanggil modul game result
             play_sound(3);											//Membunyikan suara
         }
         //membersihkan layar//

@@ -20,7 +20,13 @@ void open_file_username(Player *player, const char *targetUsername, int *is_foun
     while (fscanf(file, "%s %d %d %d %d %d", temp.username, &temp.highscore, &temp.highmove, &temp.duration, &temp.totalwin, &temp.totallose) != EOF) {
         if (strcmp(temp.username, targetUsername) == 0) {
             // Jika username ditemukan
-            *player = temp; // Salin data ke output parameter
+            // *player = temp; // Salin data ke output parameter
+            setUsername(player, temp.username);
+            setHighscore(player, temp.highscore);
+            setHighmove(player, temp.highmove);
+            setDuration(player, temp.duration);
+            setTotalWin(player, temp.totalwin);
+            setTotalLose(player, temp.totallose);
             *is_found = 1;
             break;
         }
@@ -45,12 +51,18 @@ void add_newplayer_username (Player *player, const char *targetUsername)
         return;
     }
 
-    strcpy(player->username, targetUsername);
-    player->highscore = 0;
-    player->highmove = 0;
-    player->duration = 0;
-    player->totalwin = 0;
-    player->totallose = 0; 
+    // strcpy(player->username, *targetUsername);
+    // player->highscore = 0;
+    // player->highmove = 0;
+    // player->duration = 0;
+    // player->totalwin = 0;
+    // player->totallose = 0; 
+    setUsername(player, targetUsername);
+    setHighscore(player, 0);
+    setHighmove(player, 0);
+    setDuration(player, 0);
+    setTotalWin(player, 0);
+    setTotalLose(player, 0);
 
     sort_file_playerscore(*player) ;
 }

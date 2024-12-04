@@ -1,9 +1,9 @@
-#ifndef INPUT_USER_NAME_H
-#define INPUT_USER_NAME_H
+#ifndef VIEW_GAMEPLAY_H
+#define VIEW_GAMEPLAY_H
 
 #include <stdbool.h>
-#include "../Struct/Player.h"
 #include "../Struct/Tile.h"
+#include "../Struct/Player.h"
 
 void View_GamePlay(Tile tiles[4][4], Player *player);
 

@@ -27,7 +27,7 @@ int getHighmove(const Player *p) {
 }
 
 int getScore(const Player *p) {
-    return p->currentmove;
+    return p->currentscore;
 }
 
 int getMove(const Player *p) {
