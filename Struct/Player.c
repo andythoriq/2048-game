@@ -14,6 +14,14 @@ int getHighmove(const Player *p) {
     return p->highmove;
 }
 
+int getScore(const Player *p) {
+    return p->currentmove;
+}
+
+int getMove(const Player *p) {
+    return p->currentmove;
+}
+
 int getDuration(const Player *p) {
     return p->duration;
 }
@@ -38,6 +46,14 @@ void setHighscore(Player *p, int highscore) {
 
 void setHighmove(Player *p, int highmove) {
     p->highmove = highmove;
+}
+
+void setScore(Player *p, int score) {
+    p->currentscore = score;
+}
+
+void setMove(Player *p, int move) {
+    p->currentmove = move;
 }
 
 void setDuration(Player *p, int duration) {

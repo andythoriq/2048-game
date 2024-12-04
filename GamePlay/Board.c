@@ -1,7 +1,5 @@
 #include <stdio.h>
 
-#include "../Struct/Tile.h"
-#include "../Struct/Player.h"
 #include "../Utilities/Utilities.h"
 
 #include "Board.h"
@@ -21,8 +19,9 @@ void printBoard(Tile arr[4][4], Player *p)
 
     printf("---------------------------------\n");
 
-    printf("SCORE : %d\n", getHighscore(p));
-    printf("MOVE  : %d\n", getHighmove(p));
+    printf("HIGH SCORE : %d\n", getHighscore(p));
+    printf("SCORE : %d\n", getScore(p));
+    printf("MOVE  : %d\n", getMove(p));
     
     printf("---------------------------------\n");
     for (i = 0; i < 4; i++) {

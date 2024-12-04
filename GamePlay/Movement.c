@@ -1,5 +1,3 @@
-#include "../Struct/Tile.h"
-#include "../Struct/Player.h"
 #include "Movement.h"
 
 void move(char choice, Tile tiles[4][4], Player *p)
@@ -31,7 +29,7 @@ void move(char choice, Tile tiles[4][4], Player *p)
                     if (getValue(tiles[row][col]) == getValue(tiles[row + 1][col]) && getValue(tiles[row][col]) != 0) {
                         setValueAndColor(&tiles[row][col], getValue(tiles[row][col]) * 2);
                         // hitung score
-                        setHighscore(p, getHighscore(p) + getValue(tiles[row][col]));
+                        setScore(p, getScore(p) + getValue(tiles[row][col]));
                         setValueAndColor(&tiles[row + 1][col], 0);
                     }
                 }
@@ -64,7 +62,7 @@ void move(char choice, Tile tiles[4][4], Player *p)
                     if (getValue(tiles[row][col]) == getValue(tiles[row][col - 1]) && getValue(tiles[row][col]) != 0) {
                         setValueAndColor(&tiles[row][col], getValue(tiles[row][col]) * 2);
                         // hitung score
-                        setHighscore(p, getHighscore(p) + getValue(tiles[row][col]));
+                        setScore(p, getScore(p) + getValue(tiles[row][col]));
                         setValueAndColor(&tiles[row][col - 1], 0);
                     }
                 }
@@ -97,7 +95,7 @@ void move(char choice, Tile tiles[4][4], Player *p)
                     if (getValue(tiles[row][col]) == getValue(tiles[row - 1][col]) && getValue(tiles[row][col]) != 0) {
                         setValueAndColor(&tiles[row][col], getValue(tiles[row][col]) * 2);
                         // hitung score
-                        setHighscore(p, getHighscore(p) + getValue(tiles[row][col]));
+                        setScore(p, getScore(p) + getValue(tiles[row][col]));
                         setValueAndColor(&tiles[row - 1][col], 0);
                     }
                 }
@@ -130,7 +128,7 @@ void move(char choice, Tile tiles[4][4], Player *p)
                     if (getValue(tiles[row][col]) == getValue(tiles[row][col + 1]) && getValue(tiles[row][col]) != 0) {
                         setValueAndColor(&tiles[row][col], getValue(tiles[row][col]) * 2);
                         // hitung score
-                        setHighscore(p, getHighscore(p) + getValue(tiles[row][col]));
+                        setScore(p, getScore(p) + getValue(tiles[row][col]));
                         setValueAndColor(&tiles[row][col + 1], 0);
                     }
                 }
@@ -152,7 +150,7 @@ void move(char choice, Tile tiles[4][4], Player *p)
         for (j = 0; j < 4; j++) {
             if (arr_before[i][j] != getValue(tiles[i][j])) {
                 // tambah total move (gerakan yang valid)
-                setHighmove(p, getHighmove(p) + 1);
+                setMove(p, getMove(p) + 1);
                 fillNumberInRandomPosition(tiles);
                 return;
             }
