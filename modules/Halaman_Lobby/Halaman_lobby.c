@@ -132,15 +132,16 @@ void username_input_check(char username[], int *result)
 		//jika input sudah mencapai batas 10 karakter//	
 		} else if (i == 10 && input != ENTER){	
 			
-		//Jika input ENTER, maka selesai//	
+		//Jika input ENTER, maka selesai input usename//	
 		} else if (input == ENTER){
 			//Jika enter diposisi awal
 			if (i == 0){
-				username[0] = '\0';			// mengisi array username dengan NULL
-			}				
+				username[0] = ' ';			// mengisi array username dengan NULL
+			}		
+			*result = ENTER;		
 			break;
 			
-		//Jika memilih ESC	
+		//Jika memilih ESC, maka kembali ke lobby
 		}else if (input == ESC){
 			*result = ESC;
 			break;

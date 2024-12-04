@@ -1,10 +1,18 @@
+#include <stdio.h>
+
+#include "../Utilities/Utilities.h"
+
 #include "Board.h"
 
 // kami mengambil referensi untuk printBoard dari https://www.geeksforgeeks.org
 // kami mengubah beberapa bagian seperti findlen, menambahkan warna, menengahkan papan, dll
 // menambah variable left dan right space
 
+<<<<<<< HEAD:modules/Board/Board.c
 void printBoard(Tile tiles[4][4], int *score, int *total_move)
+=======
+void printBoard(Tile arr[4][4], Player *p)
+>>>>>>> 72f126491df3eab9c7b5dc299e880ea2fa2226d1:GamePlay/Board.c
 {
 	system("cls");
 	int x_pos = (get_terminal_width('l')-33)/2;
@@ -12,6 +20,15 @@ void printBoard(Tile tiles[4][4], int *score, int *total_move)
 	gotoxy(x_pos,y_pos);
 	
     int i, j, k, left_space, right_space, digit, total_space = 7;
+<<<<<<< HEAD:modules/Board/Board.c
+=======
+
+    printf("---------------------------------\n");
+
+    printf("HIGH SCORE : %d\n", getHighscore(p));
+    printf("SCORE : %d\n", getScore(p));
+    printf("MOVE  : %d\n", getMove(p));
+>>>>>>> 72f126491df3eab9c7b5dc299e880ea2fa2226d1:GamePlay/Board.c
     
     printf("---------------------------------\n");
     for (i = 0; i < 4; i++) {
