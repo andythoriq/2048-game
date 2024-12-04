@@ -7,13 +7,19 @@
 int win_number = 2048;
 
 // Memeriksa hasil permainan 
-void game_result(Tile tiles[4][4]) {
+void game_result(Tile tiles[4][4], Player *p) {
 	// Kamus Data
 	// int tiles[4][4]; // nanti masukin angka yang selalu diperbarui dalam tilesnya
 
 	char textMenang[] = "Selamat! Kamu Menang! Kamu Berhasil Mencapai Angka 2048";
 	char textKalah[] = "Yahhh! Kamu Gagal. Jangan Menyerah, Ayo Coba Lagi!"; 
 	char textEnter[] = "Silakan tekan 'enter' untuk mengulang permainan!";
+
+	check_highscore(p);
+	check_highmove(p);
+
+	// TODO modify txt file (database)
+	// ......
 
 	if (isGameWin(tiles)) {
 		gotoxy((get_terminal_width('l') - strlen(textMenang))/2, get_middle_pos('y'));
@@ -63,3 +69,17 @@ bool isGameWin(Tile tiles[4][4]) {
 	
 	return false;
 } 
+
+void check_highscore(Player *p)
+{
+	if (getScore(p) > getHighscore(p)) {
+		setHighscore(p, getScore(p));
+	}
+}
+
+void check_highmove(Player *p)
+{
+	if (getMove(p) > getHighmove(p)) {
+		setHighmove(p, getMove(p));
+	}
+}
