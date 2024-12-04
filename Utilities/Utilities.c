@@ -1,6 +1,5 @@
 #include "Utilities.h"
 
-
 DWORD WINAPI beepThread(LPVOID sound){			//deklarasi Thread untuk suara Beep
 	int type = (int)(intptr_t)sound;
 	switch (type){

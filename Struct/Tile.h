@@ -1,14 +1,6 @@
 #ifndef Tile_H
 #define Tile_H
 
-#include <string.h>
-
-typedef struct Tile
-{
-    char color[32];
-    int value;
-} Tile;
-
 #define AC_BLACK "\x1b[90m"
 #define AC_RED "\x1b[91m"
 #define AC_GREEN "\x1b[92m"
@@ -17,6 +9,12 @@ typedef struct Tile
 #define AC_MAGENTA "\x1b[95m"
 #define AC_CYAN "\x1b[96m"
 #define AC_WHITE "\x1b[97m"
+
+typedef struct Tile
+{
+    char color[32];
+    int value;
+} Tile;
 
 void createTile(Tile * tile, int newValue);
 
@@ -29,5 +27,11 @@ void setValue(Tile *tile, int newValue);
 void setColor(Tile *tile, char newColor[32]);
 
 void setValueAndColor(Tile *tile, int newValue);
+
+void generateTiles(Tile tiles[4][4]);
+
+void resetTiles(Tile tiles[4][4]);
+
+void fillNumberInRandomPosition(Tile tiles[4][4]);
 
 #endif
