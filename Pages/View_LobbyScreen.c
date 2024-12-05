@@ -4,7 +4,8 @@
 
 void lobby_screen (int selectedarrow)
 {
-	system("cls"); //bersihkan layar
+	clearscreen ();
+	//clearscreen();
 	printf("\033[?25l"); //menyembunyikan cursor
 	
 	//mendefinisikan posisi sisi-sisi border

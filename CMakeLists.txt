@@ -4,9 +4,7 @@ cmake_minimum_required(VERSION 3.10)
 # Project name
 project(game2048)
 
-# Copy resources directory
-# file(COPY C:\\C-Project\\2048-game\\resources DESTINATION ${CMAKE_BINARY_DIR})
-file(COPY C:/C-Project/2048-game/build/resources DESTINATION ${CMAKE_BINARY_DIR})
+
 
 
 # Set the C standard

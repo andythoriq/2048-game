@@ -10,7 +10,10 @@
 #define BACKSPACE 8
 
 #include <windows.h>
+#include <conio.h>
 #include <stdio.h>
+
+void clearscreen ();
 
 DWORD WINAPI beepThread(LPVOID sound);
 

@@ -11,21 +11,23 @@ void View_GamePlay(Tile tiles[4][4], Player *player)
 {
     //***** Deklarasi Kamus data *****//
     bool is_repeat_program = true;
+    int option; 
+    bool game_finished = false;
     char choice = 'w';
     
     //***** Memulai Program *****//
     generateTiles(tiles);						//## memanggil modul untuk mengisi array dua dimensi
     
     //selama is_repeat_program == true, maka game berjalan
-    while (is_repeat_program) {
+    while (is_repeat_program == true) {
         
         printBoard(tiles, player);						//## memanggil modul untuk membuat papan
-        printf("[press 'e' to finish the Game]");
-        
+
         //Pilihan sesuai input keyboard//
         choice = getch();
-        //jika memilih e (EXIT GAME)
-        if (choice == 'e' || choice == 'E') {					//opsi untuk mengakhiri game
+
+        //jika memilih esc (EXIT GAME)
+        if (choice == ESC) {					//opsi untuk mengakhiri game
         
             printf("\033[48;5;255m\033[30m");		//memberikan efek background
             //teks yang tampil
@@ -36,6 +38,8 @@ void View_GamePlay(Tile tiles[4][4], Player *player)
             choice = getch();				//memilih benar keluar atau tidak
             if ( choice == ENTER){			//jika menekan enter
                 is_repeat_program = false;	//repitisi diakhiri	
+                update_player(player);
+                createPlayer(player, "", 0, 0, 0, 0, "00:00", 0, 0);
                 resetTiles(tiles); 			// reset tiles, jadi kondisi semula
             }else{
                 is_repeat_program = true;	//repetisi diulangi						
@@ -44,11 +48,30 @@ void View_GamePlay(Tile tiles[4][4], Player *player)
         //jika memilih selain e (CONTINUE PLAYING)
         } else {
             move(choice, tiles, &*player);				//## memanggil modul untuk menggerakan papan (GAME LOGIC UTAMA)
-            game_result(tiles, &*player);										//## memanggil modul game result
+            game_result(tiles, &*player, &game_finished);										//## memanggil modul game result
+            if (game_finished == true) {
+                printf("do you want to play again?");
+                printf("press [ENTER] to play again");
+                printf("press [ESC] to exit the game");
+                option = getch();
+                if (option == ENTER) {
+                    generateTiles(tiles);
+                    printf("%s %d %d", player->username, player->highscore, player->highmove);
+                    update_player(player);
+                    createPlayer(player, getUsername(player), getHighscore(player), getHighmove(player), 0, 0, "00:00", getTotalWin(player), getTotalLose(player));
+                    is_repeat_program = true;
+                } else if (option == ESC) {
+                    update_player(player);
+                    createPlayer(player, "", 0, 0, 0, 0, "00:00", 0, 0);
+                    is_repeat_program = false;
+                }
+            }
+            game_finished = false;
             play_sound(3);											//Membunyikan suara
         }
+
         //membersihkan layar//
-        system("cls");
+        clearscreen();
         //kembali keatas......
     }
     //Jika memilih EXIT GAME//

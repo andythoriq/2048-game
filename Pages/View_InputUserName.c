@@ -6,13 +6,15 @@ void halaman_login(Player *player, int *nextkey)
 	int is_repeat_program = 1;
 	
 	while (is_repeat_program == 1){
-		input_user_screen(&*player, &*nextkey);
+		input_user_screen(player, nextkey);
 		if (*nextkey == 0 || *nextkey == 1){
 			is_repeat_program = 0;
 		}if (*nextkey == -1){
 			is_repeat_program = 1;
 		}
 	}
+
+	return;
 }
 
 void input_user_screen(Player *player , int *nextkey)
@@ -53,7 +55,7 @@ void input_user_screen(Player *player , int *nextkey)
 	printf("\033[K");						
 	
 	if (*nextkey == 1){
-		username_found_result(&*player, input_name, &*nextkey);
+		username_found_result(player, input_name, nextkey);
 	}
 
 	play_sound(2);	//membunyikan sound efek
@@ -62,7 +64,7 @@ void input_user_screen(Player *player , int *nextkey)
 //*** modul pendukung ***//
 void input_username_border()
 {
-	system("cls"); //membersihkan layar
+	clearscreen(); //membersihkan layar
 	
 	//******* Deklarasi variable lokal ******//
 	int i,j = 0; 				//i untuk itterasi sumbu y, dan j untuk itterasi sumbu x
@@ -128,7 +130,7 @@ void username_input_check(char input_name[], int *result)
 		if (input == BACKSPACE){		
 			if (i == 0){			//jika semua karakter telah dihapus, backspace tidak terjadi
 			}else if (i != 0){		//jika ada karakter sebelumnya, maka karakter tersebut akan dihapus
-				input_name[i-1] = ' ';	//mengisi array yang dihapus dengan space
+				input_name[i-1] = '\0';	//mengisi array yang dihapus dengan space
 				printf("\033[2D");		//mengembalikan indeks ke beberapa kolom ke belakang dengan ASCII
 				printf("_");
 				printf("\033[1D");
@@ -170,28 +172,35 @@ void username_input_check(char input_name[], int *result)
 
 void username_found_result (Player *player, char input_name[], int *nextkey)
 {
-	char temp_text[60];
+	char temp_text[100];
 	int option;
 	int is_found;
+	int i;
 
 	/*** Inisiasi posisi birder ***/
 	int left_border = (get_terminal_width('l') - 30) / 2;		//posisi x untuk border kiri
 	int right_border = (get_terminal_width('l') + 30 - 2)/2;	//posisi x untuk border kanan
 	int top_border = (get_terminal_width('t') - 7)/2; 			//posisi y untuk border atas
-	int bottom_border = (get_terminal_width('t') + 7 - 2)/2;	//posisi y untuk border bawah
-						
+	int bottom_border = (get_terminal_width('t') + 7 - 2)/2;	//posisi y untuk border bawah		
 	
 	/*** Memeriksa username terdaftar atau tidak ***/
-	open_file_username(&*player, input_name, &is_found);			//## memanggil function open file untuk mencari username pada file Player_Score.txt
+	open_file_username(player, input_name, &is_found);			//## memanggil function open file untuk mencari username pada file Player_Score.txt
 	
+	getch();
 	if(is_found == 1) {
 	//** kondisi jika terdaftar **/
-		sprintf(temp_text, "[ Name : %s | Highscore : %d | duration : %s ]", getUsername(player), getHighscore(player), getConvertetDuration(player));
+		sprintf(temp_text, "[ Name : %s | Highscore : %d | duration : %s ]", player->username, player->highscore, player->duration);
 		printf_center ("username has been found", bottom_border + 2);
 		printf_center (temp_text, bottom_border + 4);
-		//done
-		*nextkey = 1;
-		getch();
+		printf_center ("[press 'ENTER' to continue]", bottom_border + 6);
+
+		option = getch();
+		if (option == ENTER){
+			*nextkey = 1;
+		}else{
+			*nextkey = -1;
+		}
+		
 
 	}else if (is_found == 0 && input_name[0] != ' '){
 	//** jika belum terdaftar **//
@@ -201,21 +210,23 @@ void username_found_result (Player *player, char input_name[], int *nextkey)
 		
 		//*** Memilih ingin membuat baru username baru atau tidak ***//
 		option = getch();
+		gotoxy(1, bottom_border + 3);	//membersihkan bacaan teks
+		printf("\033[K");
+		gotoxy(1, bottom_border + 5);
+		printf("\033[K");	
 		/**** jika memilih ENTER ****/
 		if (option == ENTER){
 			//||| Open File untuk menyimpan data baru |||//
-			add_newplayer_username(&*player, input_name);
+			printf("p test");
+			add_newplayer_username(player, input_name);
+			sprintf(temp_text, "username - %s - berhasil ditambahkan", player->username);
+			printf_center(temp_text, bottom_border + 3);
+			printf("p test");
 			//|||||||||||||||||||||||||||||||||||||||||||//;
 			*nextkey = 1;
-	
+			getch();
 		}else{
-			gotoxy(1, bottom_border + 2);	//membersihkan bacaan teks
-			printf("\033[K");
-			gotoxy(1, bottom_border + 4);
-			printf("\033[K");	
-			
 			*nextkey = -1;	
-		
 		}
 	}else if (is_found == -1){
 		//kondisi jika file tidak ditemukan//
@@ -233,4 +244,7 @@ void username_found_result (Player *player, char input_name[], int *nextkey)
 			printf("\033[K");	
 		}
 	}
+	printf("p test 5");
+	printf("%s", player->username);
+	getchar();
 }

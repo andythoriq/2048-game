@@ -10,19 +10,27 @@
 
 void printBoard(Tile arr[4][4], Player *p)
 {
-	system("cls");
+	clearscreen();
 	int x_pos = (get_terminal_width('l')-33)/2;
 	int y_pos = (get_terminal_width('t') - 9)/2;
-	gotoxy(x_pos,y_pos);
+
 	
     int i, j, k, left_space, right_space, digit, total_space = 7;
 
-    printf("---------------------------------\n");
+    gotoxy(0, y_pos - 3);
+    printf("\033[48;5;255m\033[30m");		    //memberikan efek background
+    printf("[press 'ESC' to finish the Game]");
+    printf("\033[0m");						    // mengembalikan setingan default teks
 
-    printf("HIGH SCORE : %d\n", getHighscore(p));
+    gotoxy(0, y_pos);
+    printf("---------------------------------\n");
+    printf("HIGH SCORE : %d\n", getComparedHighScore(p));
+    printf("HIGH MOVE : %d\n", getComparedHighMove(p));
     printf("SCORE : %d\n", getScore(p));
     printf("MOVE  : %d\n", getMove(p));
-    
+     printf("---------------------------------\n");
+
+    gotoxy(x_pos,y_pos); 
     printf("---------------------------------\n");
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 4; j++) {
@@ -67,6 +75,9 @@ void printBoard(Tile arr[4][4], Player *p)
         }
     }
     gotoxy(x_pos, y_pos + 8);
+    printf("---------------------------------\n");
+
+    gotoxy(0, y_pos + 9);
     printf("---------------------------------\n");
     printf("TEKAN\n");
     printf("W untuk bergerak ke ATAS\n");

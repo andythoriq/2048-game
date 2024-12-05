@@ -7,14 +7,11 @@
 
 extern int win_number;
 
-void game_result(Tile tiles[4][4], Player *p);
+void game_result(Tile tiles[4][4], Player *p, bool *game_finished);
 
 bool isGameOver(Tile tiles[4][4]);
 
 bool isGameWin(Tile tiles[4][4]);
 
-void check_highscore(Player *p);
-
-void check_highmove(Player *p);
 
 #endif

@@ -16,7 +16,7 @@ int main()
 	Tile tiles[4][4];
 	int done = 0, nextkey = 0, key, selectedarrow = 0;
 
-	createPlayer(&player, "", 9999,0,0,0,0,0,0);
+	createPlayer(&player, "", 0,0,0,0,"00:00",0,0);
 	// generateTiles(tiles);
 
 	while (done == 0){
@@ -25,7 +25,8 @@ int main()
 		selectedarrow_text(&selectedarrow, &key);
 
 		if(key == ENTER){
-			system("cls || clear");
+			clearscreen ();
+			
 			play_sound(2);
 
 			switch (selectedarrow){
@@ -34,6 +35,7 @@ int main()
 					if (nextkey == 1){
 						/*game mulai*/
 						View_GamePlay(tiles, &player);
+
 					}
 					break;
 				case 1:

@@ -1,5 +1,11 @@
 #include "Utilities.h"
 
+void clearscreen ()
+{
+	printf("\033[2J\033[H");
+	fflush(stdout);
+}
+
 DWORD WINAPI beepThread(LPVOID sound){			//deklarasi Thread untuk suara Beep
 	int type = (int)(intptr_t)sound;
 	switch (type){
@@ -13,12 +19,15 @@ DWORD WINAPI beepThread(LPVOID sound){			//deklarasi Thread untuk suara Beep
 			Beep(1100,100);
 			return 0;
 	}
+	fflush(stdout);
 }
 
 void play_sound(intptr_t type_sound){
-	HANDLE soundthread;															//membuat variable untuk HANDLE
-	soundthread = CreateThread(NULL,0, beepThread, (LPVOID)type_sound,0,NULL);	//memanggil thread
-	CloseHandle(soundthread);													//menutup Handle
+	HANDLE soundthread;	
+	DWORD threadID1;														//membuat variable untuk HANDLE
+	soundthread = CreateThread(NULL,0, beepThread, (LPVOID)type_sound,0,&threadID1);	//memanggil thread
+	fflush(stdout);
+	CloseHandle(soundthread);       // Menutup handle
 }
 
 void gotoxy (int x, int y){
