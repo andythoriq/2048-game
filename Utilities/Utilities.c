@@ -1,5 +1,14 @@
 #include "Utilities.h"
 
+<<<<<<< HEAD
+=======
+void clearscreen ()
+{
+	printf("\033[2J\033[H");
+	fflush(stdout);
+}
+
+>>>>>>> ganti-player-menjadi-array
 DWORD WINAPI beepThread(LPVOID sound){			//deklarasi Thread untuk suara Beep
 	int type = (int)(intptr_t)sound;
 	switch (type){
@@ -13,12 +22,15 @@ DWORD WINAPI beepThread(LPVOID sound){			//deklarasi Thread untuk suara Beep
 			Beep(1100,100);
 			return 0;
 	}
+	fflush(stdout);
 }
 
 void play_sound(intptr_t type_sound){
-	HANDLE soundthread;															//membuat variable untuk HANDLE
-	soundthread = CreateThread(NULL,0, beepThread, (LPVOID)type_sound,0,NULL);	//memanggil thread
-	CloseHandle(soundthread);													//menutup Handle
+	HANDLE soundthread;	
+	DWORD threadID1;														//membuat variable untuk HANDLE
+	soundthread = CreateThread(NULL,0, beepThread, (LPVOID)type_sound,0,&threadID1);	//memanggil thread
+	fflush(stdout);
+	CloseHandle(soundthread);       // Menutup handle
 }
 
 void gotoxy (int x, int y){
@@ -72,4 +84,21 @@ void text_style(char text[], int style){
 		}
 	}
 	printf("\033[0m");
+}
+
+void selectedarrow_text (int *selectedarrow, int *key){
+	
+	*key = getch();
+	if (*key == 0 || *key == 224) { 		// Deteksi tombol arrow pada keyboard
+	    *key = getch();
+	       
+	    play_sound(1);
+	        
+	    /*Kontrol atas dan bawah*/
+	    if(*key == UP_ARROW || *key == RIGHT_ARROW) {
+			*selectedarrow = (*selectedarrow - 1 + 4) % 4; // ketikan menekan arrow atas
+	    }else if (*key == DOWN_ARROW || *key == LEFT_ARROW) {
+	        *selectedarrow = (*selectedarrow + 1) % 4; // ketika menekan arrow turun
+	    }
+	}
 }

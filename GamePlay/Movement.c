@@ -2,7 +2,7 @@
 
 void move(char choice, Tile tiles[4][4], Player *p)
 {
-	system("cls");
+	clearscreen();
 	int col, row, k, i, j, arr_before[4][4];
 
     for (i = 0; i < 4; i++) {
