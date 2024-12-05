@@ -1,32 +1,3 @@
-<<<<<<< HEAD
-
-
-
-// initialize
-// ...
-
-
-
-
-void View_GamePlay()
-{
-    char choice;
-
-    // clear board
-
-    // initialize board
-
-    do {
-        printBoard();
-        choice = input_choice();
-        moveBoard(choice, tiles, player);
-    } while (choice != 'E' || choice != 'e' || choice != EXIT || choice != ESC) {
-        printBoard();
-        choice = input_choice();
-        moveBoard(choice, tiles, player);
-    }
-    
-=======
 #include "View_GamePlay.h"
 #include "../GamePlay/Movement.h"
 #include "../GamePlay/WinOrLose.h"
@@ -106,6 +77,5 @@ void View_GamePlay(Tile tiles[4][4], Player *player)
     //Jika memilih EXIT GAME//
     play_sound(2);
     resetTiles(tiles);						//## memanggil modul untuk mereset board game seperti semula
->>>>>>> ganti-player-menjadi-array
     return;
 } 

@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-
-
-=======
 #include "View_InputUserName.h"
 
 //*** screen utama ***//
@@ -260,4 +248,3 @@ void username_found_result (Player *player, char input_name[], int *nextkey)
 	printf("%s", player->username);
 	getchar();
 }
->>>>>>> ganti-player-menjadi-array

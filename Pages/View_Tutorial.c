@@ -1,12 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-<<<<<<< HEAD
-
-#include "../Utilities/Utilities.h"
-
-#include "View_Tutorial.h"
-=======
->>>>>>> ganti-player-menjadi-array
 
 #include "../Utilities/Utilities.h"
 

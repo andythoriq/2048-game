@@ -1,18 +1,36 @@
+#include <stdio.h>
+
+#include "../Utilities/Utilities.h"
+
 #include "Board.h"
 
 // kami mengambil referensi untuk printBoard dari https://www.geeksforgeeks.org
 // kami mengubah beberapa bagian seperti findlen, menambahkan warna, menengahkan papan, dll
 // menambah variable left dan right space
 
-void printBoard(Tile tiles[4][4], int *score, int *total_move)
+void printBoard(Tile arr[4][4], Player *p)
 {
-	system("cls");
+	clearscreen();
 	int x_pos = (get_terminal_width('l')-33)/2;
 	int y_pos = (get_terminal_width('t') - 9)/2;
-	gotoxy(x_pos,y_pos);
+
 	
     int i, j, k, left_space, right_space, digit, total_space = 7;
-    
+
+    gotoxy(0, y_pos - 3);
+    printf("\033[48;5;255m\033[30m");		    //memberikan efek background
+    printf("[press 'ESC' to finish the Game]");
+    printf("\033[0m");						    // mengembalikan setingan default teks
+
+    gotoxy(0, y_pos);
+    printf("---------------------------------\n");
+    printf("HIGH SCORE : %d\n", getComparedHighScore(p));
+    printf("HIGH MOVE : %d\n", getComparedHighMove(p));
+    printf("SCORE : %d\n", getScore(p));
+    printf("MOVE  : %d\n", getMove(p));
+     printf("---------------------------------\n");
+
+    gotoxy(x_pos,y_pos); 
     printf("---------------------------------\n");
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 4; j++) {
@@ -21,7 +39,7 @@ void printBoard(Tile tiles[4][4], int *score, int *total_move)
                 printf("|");
             }
 
-            int value = getValue(tiles[i][j]);
+            int value = getValue(arr[i][j]);
             if (value != 0) {
                 digit = findlen(value);
 
@@ -34,7 +52,7 @@ void printBoard(Tile tiles[4][4], int *score, int *total_move)
                     printf(" ");
                 }
 
-                printf("%s%d%s", getColor(tiles[i][j]), value, AC_WHITE);
+                printf("%s%d%s", getColor(arr[i][j]), value, AC_WHITE);
 
                 // Cetak spasi kanan
                 for (k = 0; k < right_space; k++) {
@@ -57,6 +75,15 @@ void printBoard(Tile tiles[4][4], int *score, int *total_move)
         }
     }
     gotoxy(x_pos, y_pos + 8);
+    printf("---------------------------------\n");
+
+    gotoxy(0, y_pos + 9);
+    printf("---------------------------------\n");
+    printf("TEKAN\n");
+    printf("W untuk bergerak ke ATAS\n");
+    printf("A untuk bergerak ke KIRI\n");
+    printf("S untuk bergerak ke BAWAH\n");
+    printf("D untuk bergerak ke KANAN\n");
     printf("---------------------------------\n");
 }
 

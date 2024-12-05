@@ -13,11 +13,8 @@
 #include <conio.h>
 #include <stdio.h>
 
-<<<<<<< HEAD
-=======
 void clearscreen ();
 
->>>>>>> ganti-player-menjadi-array
 DWORD WINAPI beepThread(LPVOID sound);
 
 void play_sound(intptr_t TYPE_sound);

@@ -1,14 +1,11 @@
 #include "Utilities.h"
 
-<<<<<<< HEAD
-=======
 void clearscreen ()
 {
 	printf("\033[2J\033[H");
 	fflush(stdout);
 }
 
->>>>>>> ganti-player-menjadi-array
 DWORD WINAPI beepThread(LPVOID sound){			//deklarasi Thread untuk suara Beep
 	int type = (int)(intptr_t)sound;
 	switch (type){
