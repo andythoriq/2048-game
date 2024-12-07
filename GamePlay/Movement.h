@@ -3,6 +3,7 @@
 
 #include "../Struct/Tile.h"
 #include "../Struct/Player.h"
+#include "../Utilities/Utilities.h"
 
 void move(char choice, Tile tiles[4][4], Player *player);
 

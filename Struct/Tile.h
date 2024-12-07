@@ -24,7 +24,7 @@ const char * getColor(Tile tile);
 
 void setValue(Tile *tile, int newValue);
 
-void setColor(Tile *tile, char newColor[32]);
+void setColor(Tile *tile, char newColor[]);
 
 void setValueAndColor(Tile *tile, int newValue);
 

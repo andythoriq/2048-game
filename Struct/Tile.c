@@ -1,4 +1,5 @@
 #include <string.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include <time.h>
 #include "Tile.h"
@@ -27,7 +28,7 @@ void setValue(Tile *tile, int newValue)
     tile->value = newValue;
 }
 
-void setColor(Tile *tile, char newColor[32])
+void setColor(Tile *tile, char newColor[])
 {
     strncpy(tile->color, newColor, sizeof(tile->color) - 1);
     tile->color[sizeof(tile->color) - 1] = '\0';

@@ -15,7 +15,7 @@ void View_GamePlay(Tile tiles[4][4], Player *player)
     int p, selectedarrow;
     bool game_finished = false, escinput = false;
     char choice = 'w';
-    
+    char blankname[10] = "";
 
     //***** Memulai Program *****//
 
@@ -106,7 +106,7 @@ void View_GamePlay(Tile tiles[4][4], Player *player)
                         generateTiles(tiles);                               //generate tiles baru
                         save_playerprogress(tiles, getUsername(player));    //save player progress dibuat 0                        
                         update_player(player);                      //mengubah save player highscore pada file
-                        createPlayer(player, "", 0, 0, 0, 0, 0, 0); //mengosongkan kembali struct player
+                        createPlayer(player, blankname, 0, 0, 0, 0, 0, 0); //mengosongkan kembali struct player
 
                         //tidak mengulang kembali, dan kembali ke lobby
                         is_repeat_program = false;  //repetisi diakhiri
@@ -154,6 +154,6 @@ void View_GamePlay(Tile tiles[4][4], Player *player)
     }
     //Jika memilih EXIT GAME//
     resetTiles(tiles);						        //## memanggil modul untuk mereset board game seperti semula
-    createPlayer(player, "", 0, 0, 0, 0, 0, 0);
+    createPlayer(player, blankname, 0, 0, 0, 0, 0, 0);
     return;
 } 

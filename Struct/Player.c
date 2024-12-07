@@ -13,7 +13,7 @@ void createPlayer(Player *player, char username[10], int highscore, int highmove
 }
 
 // Getter implementations
-const char *getUsername(const Player *p) {
+char *getUsername(Player *p) {
     return p->username;
 }
 

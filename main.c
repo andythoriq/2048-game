@@ -13,10 +13,11 @@
 int main()
 {
 	Player player;
+	char username[10] = "";
 	Tile tiles[4][4];
 	int done = 0, nextkey = 0, key, selectedarrow = 0;
 
-	createPlayer(&player, "", 0,0,0,0,0,0);
+	createPlayer(&player, username, 0,0,0,0,0,0);
 	// generateTiles(tiles);
 
 	while (done == 0){

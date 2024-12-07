@@ -6,5 +6,6 @@
 #include "../Utilities/File.h"
 
 void View_LeaderBoard();
+void LeaderBoard_Border ();
 
 #endif
