@@ -13,22 +13,39 @@
 #include <conio.h>
 #include <stdio.h>
 
+
+//nama author   : Muhamad Sopiana Argiansah
+//nama file     : Utilities.c
+//deskripsi : 
+/*file c yang berisi modul-modul untuk keperluan tampilan
+dan banyak dipanggil di halaman lain */
+
+
+//modul untuk membersihka layar pada terminal
 void clearscreen ();
 
+//modul uutuk mengaktifkan bunyi beep pada thread lain
 DWORD WINAPI beepThread(LPVOID sound);
 
+//modul untuk memnaggil thread untuk membunyikan beep
 void play_sound(intptr_t TYPE_sound);
 
-int get_middle_pos(char pos);						//memperoleh posisi tepat ditengah-tengah y
-
-void printf_center (const char* text, int posisi_Y);	//untuk keperluan memprint text tepat berada di tengah-tengah halaman
-
-void text_style (char text[], int style);		//membuat text menjadi pudar
-
+//modul untuk memindahkan kursor ke posisi x, y tertentu
 void gotoxy(int x, int y);
 
+//modul untuk memperoleh ukuran terminal saat ini
 int get_terminal_width(char width);
 
+//modul untuk memperoleh posisi x/y pas ditengah2 teminal
+int get_middle_pos(char pos);
+
+//modul untuk memprint text tepat dibagian tengah(x) halaman
+void printf_center (const char* text, int posisi_Y);	
+
+//modul untuk mengubah style pada text 
+void text_style (char text[], int style);	
+
+//modul untuk memperoleh input user pada saat selectedkey di lobby
 void selectedarrow_text (int *selectedarrow, int *key);
 
 #endif

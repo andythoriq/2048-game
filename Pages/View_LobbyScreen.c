@@ -2,10 +2,30 @@
 
 #include "../Utilities/Utilities.h"
 
+//nama author   : Muhamad Sopiana Argiansah
+//nama file     : View_LobbyScreen.c
+//deskripsi : 
+/*file c yang berisi modul-modul untuk membuat dan menampilkan
+halaman lobby utama dan memeriksa kondisi halaman
+mana yang dipilih*/
+
+
+//**************//
+/* program modul*/
+//**************//
+
+
+//modul untuk menampilkan halaman lobby
+//dan memeriksa opsi halaman mana yang dipilih
 void lobby_screen (int selectedarrow)
 {
+	/*parameter
+	selected arrow : parameter input untuk memeriksa opsi mana yang dipilih
+	*/
+
+	//mebersihkan layar
 	clearscreen ();
-	//clearscreen();
+
 	printf("\033[?25l"); //menyembunyikan cursor
 	
 	//mendefinisikan posisi sisi-sisi border

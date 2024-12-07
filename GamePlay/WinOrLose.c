@@ -5,16 +5,31 @@
 
 #include "WinOrLose.h"
 
-int win_number = 2048;
+//nama author   : Nauval Khairiyan
+//nama file     : WinOrLose.c
+//deskripsi : 
+/*file c yang berisi modul-modul untuk memeriksa kondisi menang atau kalah.
+lalu jika kondisi terpenuhi, hasil gameover/win akan di keluarkan*/
+
+
+//**************//
+/* program modul*/
+//**************//
+
 
 // Memeriksa hasil permainan 
 void game_result(Tile tiles[4][4], Player *p, bool *game_finished) {
-	// Kamus Data
-	// int tiles[4][4]; // nanti masukin angka yang selalu diperbarui dalam tilesnya
+/* parameter :
+tiles	: parameter input output (by adress) tiles saat ini (angka didalam modul)
+p		: parameter input output (by adress) struct player saat ini
+*game finished	: parameter input output (by adress) untuk kondisi game berakhir atau tidak*/
+
+
+	//kamus data
 	char* textMenang[] = {"********** CONGRATULATION **********","you reach number 2048"};
 	char* textKalah[] = {"********** GAMEOVER **********", "there is no more space to move"}; 
 
-
+	//jika kondisi menunjukan menang
 	if (isGameWin(tiles)) {
 		setTotalWin(p, getTotalWin(p) + 1);
 
@@ -23,6 +38,8 @@ void game_result(Tile tiles[4][4], Player *p, bool *game_finished) {
 		gotoxy((get_terminal_width('l') - strlen(textMenang[1]))/2, get_middle_pos('y') + 2);
 		printf("%s", textMenang[1]);
 		*game_finished = true;
+	
+	//jika kondisi menunjukan kalah
 	} else if (isGameOver(tiles)) {
 		setTotalLose(p, getTotalLose(p) + 1);
 
@@ -36,8 +53,10 @@ void game_result(Tile tiles[4][4], Player *p, bool *game_finished) {
 	printf("\n");
 }
 
-// Function untuk memeriksa apakah pemain kalah
+//Function untuk memeriksa apakah pemain kalah
 bool isGameOver(Tile tiles[4][4]) {
+
+	//kamus data
 	int i; int j;
 	
 	//Cek jika masih ada langkah valid horizontal atau vertikal
@@ -55,7 +74,11 @@ bool isGameOver(Tile tiles[4][4]) {
 
 // Function untuk memeriksa apakah pemain menang
 bool isGameWin(Tile tiles[4][4]) {
+	//kamus data
+	int win_number = 2048;
 	int i; int j;
+
+
 	for (i = 0; i < 4; i++) {
 		for (j = 0; j < 4; j++) {
 			if (getValue(tiles[i][j]) == win_number) { 

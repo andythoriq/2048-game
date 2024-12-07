@@ -1,7 +1,21 @@
 #include "View_LeaderBoard.h"
 
+//nama author   : Muhamad Sopiana Argiansah
+//nama file     : View_LeaderBoard.c
+//deskripsi : 
+/*file c yang berisi modul-modul untuk membuat dan menampilkan 
+halaman leader Board*/
+
+
+//**************//
+/* program modul*/
+//**************//
+
+//modul utama untuk membuat halaman leadrboard secara keseluruhan
 void View_LeaderBoard()
 {
+
+    //kamus data
     FILE *file;
     Player player[50];
     int i, datacount;
@@ -12,16 +26,19 @@ void View_LeaderBoard()
 	int top_border = ((get_terminal_width('t') - 26)/2);
 	int bottom_border = top_border + 26;
 
-    LeaderBoard_Border();
+    //membuat border leader board
+    LeaderBoard_Border();           //## memanggil modul untuk membuat border leader board
 
-    sort_file_playerscore();  
+    //melakukan sorting pada file supaya terbesar ke terkecil
+    sort_file_playerscore();        //##meamnggil nodul ubtuk sorting data pada file
 
-    //mengisi array dengan data file//
+    //mengisi array dengan data  pada file data//
     file = fopen ("Player_Score.txt", "r");
     if (file == NULL){
         printf("error opening file!");
         return;
     }
+    //melakukan scanf(read) pada file dan memasukannya ke variable
     i = 0;
     fseek(file, 0, SEEK_SET);
     fscanf(file, "%s %d %d %d %d", player[i].username, &player[i].highscore, &player[i].highmove, &player[i].totalwin, &player[i].totallose);
@@ -31,7 +48,10 @@ void View_LeaderBoard()
         i++;
     }
     fclose(file);
-    ///////// selesai mengisi array //////////////
+
+    ///////// selesai mengisi array sesuai data file //////////////
+
+    //menampilkan hasil pada leaderboard sesaui data pada file yang sudah di sort
     datacount = i -1;
     for (i=0 ; i<datacount; i++){
         gotoxy (left_border + 3, top_border+6+2*i);
@@ -56,15 +76,23 @@ void View_LeaderBoard()
     return;
 }
 
+
+//modul untuk membuat border pada halaman leaderboard
 void LeaderBoard_Border ()
 {
+    //kamus data
     int i,j;
 
+    //mendeklarasikan posisi border
     int left_border = ((get_terminal_width('l') - 103)/2);
 	int right_border = left_border + 103;
 	int top_border = ((get_terminal_width('t') - 26)/2);
 	int bottom_border = top_border + 26;
+
+    //header border
     printf_center ("------------------------------ LEADERBOARD ------------------------------", top_border+1);
+  
+    //border horisontal
     for (i = left_border; i < right_border; i++){
         gotoxy(i, top_border + 3);
         printf("#");
@@ -74,6 +102,7 @@ void LeaderBoard_Border ()
         printf("#");
     }
 
+    //teks pada setiap kolom
     gotoxy(left_border + 2 , top_border + 4);
     printf("Rank");    
     gotoxy(left_border + 11 , top_border + 4);
@@ -87,6 +116,7 @@ void LeaderBoard_Border ()
     gotoxy(left_border + 75 , top_border + 4);
     printf("Totallose");
 
+    //border vertikal
     for (i = top_border + 3 ; i < bottom_border; i++){
         gotoxy(left_border, i);
         printf("#");

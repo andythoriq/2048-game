@@ -2,6 +2,18 @@
 #include "player.h"
 
 
+//nama author   : Andy Thoriq
+//nama file     : Player.c
+//deskripsi : 
+/*file c yang berisi struct Player dan mdoul-modul
+yang berhubungan dengan manipulasi struct player*/
+
+
+//**************//
+/* program modul*/
+//**************//
+
+//modul untuk menginput data pada subvar-subvar struct player
 void createPlayer(Player *player, char username[10], int highscore, int highmove, int currentscore, int currentmove, int totalwin, int totallose) {
     setUsername(player, username);
     setHighscore(player, highscore);
@@ -13,9 +25,11 @@ void createPlayer(Player *player, char username[10], int highscore, int highmove
 }
 
 // Getter implementations
+/*untuk memperoleh nilai pada subvar struct*/
 char *getUsername(Player *p) {
     return p->username;
 }
+
 
 int getHighscore(const Player * p) {
     return p->highscore;
@@ -58,6 +72,7 @@ int getComparedHighMove(Player *p)
 }
 
 // Setter implementations
+/*untuk mengisi data pada subvar Player dengan data baru*/
 void setUsername(Player *p, const char *username) {
     strncpy(p->username, username, sizeof(p->username) - 1);
     p->username[sizeof(p->username) - 1] = '\0'; // Ensure null termination
