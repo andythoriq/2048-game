@@ -3,7 +3,20 @@
 void clearscreen ()
 {
 	printf("\033[2J\033[H");
+	// system("cls");
 	fflush(stdout);
+
+	// HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    // COORD coord = {0, 0};
+    // CONSOLE_SCREEN_BUFFER_INFO csbi;
+	// DWORD count;
+	// printf("\033[0m");
+    
+	// GetConsoleScreenBufferInfo(hConsole, &csbi);
+    // FillConsoleOutputCharacter(hConsole, ' ', csbi.dwSize.X * csbi.dwSize.Y, coord, &count);
+    // SetConsoleCursorPosition(hConsole, coord);
+
+	// CloseHandle(hConsole);
 }
 
 DWORD WINAPI beepThread(LPVOID sound){			//deklarasi Thread untuk suara Beep

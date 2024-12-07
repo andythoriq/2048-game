@@ -83,7 +83,7 @@ void printBoard(Tile arr[4][4], Player *p)
     printf("---------------------------------\n");
 
 
-    gotoxy(12, y_pos + 7);
+    gotoxy((35 - strlen(getUsername(p))) / 2, y_pos + 7);
     printf("%s", getUsername(p));
 
     gotoxy(0, y_pos + 9);
