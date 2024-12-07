@@ -46,7 +46,7 @@ void View_Tutorial()
 	"                     ",
 	"HOW TO PLAY GAME 2048",
 	"                     ",
-	"1. Geser ubin ke atas, bawah, kiri, atau kanan menggunakan panah (keyboard/sentuhan).",
+	"1. Geser ubin ke atas, bawah, kiri, atau kanan menggunakan 'W''A''S''D' (keyboard)   ",
 	"2. Ubin dengan angka yang sama akan bergabung saat bertemu akan menghasilkan         ", 
     "   nilai totalnya (contoh: 2 + 2 = 4).                                               ",
 	"3. Setiap geseran menambahkan ubin baru bernilai 2 atau 4 secara acak di papan       ",
