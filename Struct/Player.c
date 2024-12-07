@@ -100,3 +100,4 @@ void setTotalWin(Player *p, int totalwin) {
 void setTotalLose(Player *p, int totallose) {
     p->totallose = totallose;
 }
+

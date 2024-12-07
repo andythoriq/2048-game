@@ -11,29 +11,26 @@ int win_number = 2048;
 void game_result(Tile tiles[4][4], Player *p, bool *game_finished) {
 	// Kamus Data
 	// int tiles[4][4]; // nanti masukin angka yang selalu diperbarui dalam tilesnya
-	char textMenang[] = "Selamat! Kamu Menang! Kamu Berhasil Mencapai Angka 2048";
-	char textKalah[] = "Yahhh! Kamu Gagal. Jangan Menyerah, Ayo Coba Lagi!"; 
-	char textEnter[] = "Silakan tekan 'enter' untuk mengulang permainan!";
+	char* textMenang[] = {"********** CONGRATULATION **********","you reach number 2048"};
+	char* textKalah[] = {"********** GAMEOVER **********", "there is no more space to move"}; 
 
 
 	if (isGameWin(tiles)) {
 		setTotalWin(p, getTotalWin(p) + 1);
 
-		gotoxy((get_terminal_width('l') - strlen(textMenang))/2, get_middle_pos('y'));
-		printf("%s", textMenang);
-		gotoxy((get_terminal_width('l') - strlen(textEnter))/2, get_middle_pos('y') + 1);
-		printf("%s", textEnter);
+		gotoxy((get_terminal_width('l') - strlen(textMenang[0]))/2, get_middle_pos('y'));
+		printf("%s", textMenang[0]);
+		gotoxy((get_terminal_width('l') - strlen(textMenang[1]))/2, get_middle_pos('y') + 2);
+		printf("%s", textMenang[1]);
 		*game_finished = true;
-		getch();
 	} else if (isGameOver(tiles)) {
 		setTotalLose(p, getTotalLose(p) + 1);
 
-		gotoxy((get_terminal_width('l') - strlen(textKalah))/2, get_middle_pos('y'));
-		printf("%s", textKalah);
-		gotoxy((get_terminal_width('l') - strlen(textEnter))/2, get_middle_pos('y') + 1);
-		printf("%s", textEnter);
+		gotoxy((get_terminal_width('l') - strlen(textKalah[0]))/2, get_middle_pos('y'));
+		printf("%s", textKalah[0]);
+		gotoxy((get_terminal_width('l') - strlen(textKalah[1]))/2, get_middle_pos('y') + 1);
+		printf("%s", textKalah[1]);
 		*game_finished = true;
-		getch();
 	}
 
 	printf("\n");

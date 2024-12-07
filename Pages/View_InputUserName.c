@@ -186,7 +186,6 @@ void username_found_result (Player *player, char input_name[], int *nextkey)
 	/*** Memeriksa username terdaftar atau tidak ***/
 	open_file_username(player, input_name, &is_found);			//## memanggil function open file untuk mencari username pada file Player_Score.txt
 	
-	getch();
 	if(is_found == 1) {
 	//** kondisi jika terdaftar **/
 		sprintf(temp_text, "[ Name : %s | Highscore : %d | duration : %s ]", player->username, player->highscore, player->duration);
@@ -217,14 +216,12 @@ void username_found_result (Player *player, char input_name[], int *nextkey)
 		/**** jika memilih ENTER ****/
 		if (option == ENTER){
 			//||| Open File untuk menyimpan data baru |||//
-			printf("p test");
 			add_newplayer_username(player, input_name);
 			sprintf(temp_text, "username - %s - berhasil ditambahkan", player->username);
 			printf_center(temp_text, bottom_border + 3);
-			printf("p test");
 			//|||||||||||||||||||||||||||||||||||||||||||//;
 			*nextkey = 1;
-			getch();
+			getch(); 			//button//
 		}else{
 			*nextkey = -1;	
 		}
@@ -235,16 +232,19 @@ void username_found_result (Player *player, char input_name[], int *nextkey)
 	//** jika memilih sebagai guest **//
 		printf_center ("[press 'ENTER' to play as a guest]", bottom_border + 3);
 		option = getch();
-		if (option == 13){
+
+		//menekan enter
+		if (option == ENTER){
 			*nextkey = 1;
+
+			player->username[0] = "";
 			//bermain sebagai guest tanpa save data
+
+		//selain enter
 		}else{
 			*nextkey = -1;
 			gotoxy(1, bottom_border + 3);				//mengapus text 'press enter to play as a guest
 			printf("\033[K");	
 		}
 	}
-	printf("p test 5");
-	printf("%s", player->username);
-	getchar();
 }

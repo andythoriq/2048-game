@@ -35,7 +35,6 @@ int main()
 					if (nextkey == 1){
 						/*game mulai*/
 						View_GamePlay(tiles, &player);
-
 					}
 					break;
 				case 1:
