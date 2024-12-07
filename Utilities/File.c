@@ -7,7 +7,7 @@
 void open_file_username(Player *player, char targetUsername[10], int *is_found) 
 {
     FILE *file;
-    char name[10] = "", record [50] = "", duration[6] = "";
+    char name[10] = "", record [50] = "";
     int highscore, highmove, totalwin, totallose;
     int found = 0;
 
@@ -24,9 +24,9 @@ void open_file_username(Player *player, char targetUsername[10], int *is_found)
         if (strcmp(name, targetUsername) == 0) {
             // Jika username ditemukan
             fseek (file, -strlen(record)-1, SEEK_CUR);
-            fscanf(file, "%s %d %d %s %d %d", name, &highscore, &highmove, duration, &totalwin, &totallose);
+            fscanf(file, "%s %d %d %d %d", name, &highscore, &highmove, &totalwin, &totallose);
             
-            createPlayer(player, name, highscore, highmove, 0, 0, duration, totalwin, totallose);
+            createPlayer(player, name, highscore, highmove, 0, 0, totalwin, totallose);
 
             *is_found = 1;
             found = 1;
@@ -52,9 +52,9 @@ void add_newplayer_username (Player *player, char targetUsername[])
         return;
     }
     
-    createPlayer(player, targetUsername, 0, 0, 0, 0, "00:00", 0, 0);
+    createPlayer(player, targetUsername, 0, 0, 0, 0, 0, 0);
 
-    fprintf (file, "%s %d %d %s %d %d\n", getUsername(player), getHighscore(player), getHighmove(player), getDuration(player), getTotalWin(player), getTotalLose(player));
+    fprintf (file, "%s %d %d %d %d\n", getUsername(player), getHighscore(player), getHighmove(player), getTotalWin(player), getTotalLose(player));
     fclose(file);
 }
 
@@ -63,7 +63,7 @@ void update_player(Player *player)
     FILE *file;
     FILE *tempfile;
     char record [50] = "", nama_yg_dicari[10] = "";
-    char duration[6], name[10];
+    char name[10];
     int highscore, highmove, totalwin, totallose;
 
     file = fopen("Player_Score.txt", "r+");  
@@ -80,7 +80,7 @@ void update_player(Player *player)
         if (strcmp(nama_yg_dicari, getUsername(player)) == 0) {
             // Jika username ditemukan
             fseek (tempfile, -1, SEEK_CUR);
-            fprintf(tempfile, "%s %d %d %s %d %d\n", getUsername(player), getHighscore(player), getHighmove(player), getDuration(player), getTotalWin(player), getTotalLose(player));
+            fprintf(tempfile, "%s %d %d %d %d\n", getUsername(player), getHighscore(player), getHighmove(player), getTotalWin(player), getTotalLose(player));
         }else if (strcmp(nama_yg_dicari, getUsername(player)) != 0) {
             fprintf(tempfile,"%s", record);
         }
@@ -139,10 +139,10 @@ void sort_file_playerscore()
     }
     i = 0;
     fseek(file, 0, SEEK_SET);
-    fscanf(file, "%s %d %d %s %d %d", player[i].username, &player[i].highscore, &player[i].highmove, player[i].duration, &player[i].totalwin, &player[i].totallose);
+    fscanf(file, "%s %d %d %d %d", player[i].username, &player[i].highscore, &player[i].highmove, &player[i].totalwin, &player[i].totallose);
     fseek(file, 0, SEEK_SET);
     while (!feof(file)) {
-        fscanf(file, "%s %d %d %s %d %d", player[i].username, &player[i].highscore, &player[i].highmove, player[i].duration, &player[i].totalwin, &player[i].totallose);
+        fscanf(file, "%s %d %d %d %d", player[i].username, &player[i].highscore, &player[i].highmove, &player[i].totalwin, &player[i].totallose);
         i++;
     }
     datacount = i - 1;
@@ -166,7 +166,7 @@ void sort_file_playerscore()
 
     fseek(file, 0, SEEK_SET);
     for (i=0 ; i<datacount; i++) {
-        fprintf(file, "%s %d %d %s %d %d\n",  player[i].username, player[i].highscore, player[i].highmove, player[i].duration, player[i].totalwin, player[i].totallose);
+        fprintf(file, "%s %d %d %d %d\n",  player[i].username, player[i].highscore, player[i].highmove, player[i].totalwin, player[i].totallose);
     }
     fclose(file);
 }

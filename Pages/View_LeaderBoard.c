@@ -24,10 +24,10 @@ void View_LeaderBoard()
     }
     i = 0;
     fseek(file, 0, SEEK_SET);
-    fscanf(file, "%s %d %d %s %d %d", player[i].username, &player[i].highscore, &player[i].highmove, player[i].duration, &player[i].totalwin, &player[i].totallose);
+    fscanf(file, "%s %d %d %d %d", player[i].username, &player[i].highscore, &player[i].highmove, &player[i].totalwin, &player[i].totallose);
     fseek(file, 0, SEEK_SET);
     while (!feof(file)) {
-        fscanf(file, "%s %d %d %s %d %d", player[i].username, &player[i].highscore, &player[i].highmove, player[i].duration, &player[i].totalwin, &player[i].totallose);
+        fscanf(file, "%s %d %d %d %d", player[i].username, &player[i].highscore, &player[i].highmove, &player[i].totalwin, &player[i].totallose);
         i++;
     }
     fclose(file);
@@ -44,10 +44,8 @@ void View_LeaderBoard()
         gotoxy(left_border + 43, top_border+6+2*i);
         printf("%d", player[i].highmove);
         gotoxy(left_border + 59, top_border+6+2*i);
-        printf("%s", player[i].duration); 
+        printf("%d", player[i].totalwin); 
         gotoxy(left_border + 75, top_border+6+2*i);
-        printf("%d", player[i].totalwin);
-        gotoxy(left_border + 91, top_border+6+2*i);
         printf("%d", player[i].totallose);    
         if ( i > 9){
             break;
@@ -85,10 +83,8 @@ void LeaderBoard_Border ()
     gotoxy(left_border + 43 , top_border + 4);
     printf("Highmove");
     gotoxy(left_border + 59 , top_border + 4);
-    printf("Duration");
-    gotoxy(left_border + 75 , top_border + 4);
     printf("Totalwin");
-    gotoxy(left_border + 91 , top_border + 4);
+    gotoxy(left_border + 75 , top_border + 4);
     printf("Totallose");
 
     for (i = top_border + 3 ; i < bottom_border; i++){

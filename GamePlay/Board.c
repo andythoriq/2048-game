@@ -22,6 +22,11 @@ void printBoard(Tile arr[4][4], Player *p)
     printf("[press 'ESC' to finish the Game]");
     printf("\033[0m");						    // mengembalikan setingan default teks
 
+    gotoxy(0, y_pos - 1);
+    printf("\033[48;5;255m\033[30m");		    //memberikan efek background
+    printf("[press 'r' to reset the Game]");
+    printf("\033[0m");	
+
     gotoxy(0, y_pos);
     printf("---------------------------------\n");
     printf("HIGH SCORE : %d\n", getComparedHighScore(p));
@@ -76,6 +81,10 @@ void printBoard(Tile arr[4][4], Player *p)
     }
     gotoxy(x_pos, y_pos + 8);
     printf("---------------------------------\n");
+
+
+    gotoxy(12, y_pos + 7);
+    printf("%s", getUsername(p));
 
     gotoxy(0, y_pos + 9);
     printf("---------------------------------\n");

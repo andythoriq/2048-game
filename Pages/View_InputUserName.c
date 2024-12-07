@@ -188,7 +188,7 @@ void username_found_result (Player *player, char input_name[], int *nextkey)
 	
 	if(is_found == 1) {
 	//** kondisi jika terdaftar **/
-		sprintf(temp_text, "[ Name : %s | Highscore : %d | duration : %s ]", player->username, player->highscore, player->duration);
+		sprintf(temp_text, "[ Name : %s | Highscore : %d | Highmove : %d ]", player->username, player->highscore, player->highmove);
 		printf_center ("username has been found", bottom_border + 2);
 		printf_center (temp_text, bottom_border + 4);
 		printf_center ("[press 'ENTER' to continue]", bottom_border + 6);
@@ -237,7 +237,7 @@ void username_found_result (Player *player, char input_name[], int *nextkey)
 		if (option == ENTER){
 			*nextkey = 1;
 
-			player->username[0] = "";
+			player->username[0] = ' ';
 			//bermain sebagai guest tanpa save data
 
 		//selain enter

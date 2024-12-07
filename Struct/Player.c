@@ -2,13 +2,12 @@
 #include "player.h"
 
 
-void createPlayer(Player *player, char username[10], int highscore, int highmove, int currentscore, int currentmove, char duration[6], int totalwin, int totallose) {
+void createPlayer(Player *player, char username[10], int highscore, int highmove, int currentscore, int currentmove, int totalwin, int totallose) {
     setUsername(player, username);
     setHighscore(player, highscore);
     setHighmove(player, highmove);
     setScore(player, currentscore);
     setMove(player, currentmove);
-    setDuration(player, duration);
     setTotalWin(player, totalwin);
     setTotalLose(player, totallose);
 }
@@ -32,15 +31,6 @@ int getScore(const Player * p) {
 
 int getMove(const Player * p) {
     return p->currentmove;
-}
-
-const char *getDuration(const Player * p) {
-    return p->duration;
-}
-
-const char * getConvertetDuration(const Player *p)
-{
-    return p -> duration;
 }
 
 int getTotalWin(const Player * p) {
@@ -87,10 +77,6 @@ void setScore(Player *p, int score) {
 
 void setMove(Player *p, int move) {
     p->currentmove = move;
-}
-
-void setDuration(Player *p, char duration[6]) {
-    strncpy (p->duration, duration, 6);
 }
 
 void setTotalWin(Player *p, int totalwin) {
