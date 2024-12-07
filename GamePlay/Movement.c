@@ -1,4 +1,5 @@
 #include "Movement.h"
+#include <ctype.h>
 
 //nama author   : Andy Thoriq
 //nama file     : Movement.c
@@ -11,6 +12,10 @@ void move(char choice, Tile tiles[4][4], Player *p)
 {
     //membersihkan layar
 	clearscreen();
+
+    // mengubah choice menjadi char kecil
+    choice = tolower(choice);
+
 
     //kamus data
 	int col, row, k, i, j, arr_before[4][4];
