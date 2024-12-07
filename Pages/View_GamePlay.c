@@ -7,8 +7,24 @@
 #include "../Utilities/File.h"
 #include "../GamePlay/Board.h"
 
+//nama author   : Muhamad Sopiana Argiansah, Andy Thoriq, Nauval Khairiyan
+//nama file     : View_GamePlay.c
+//deskripsi : 
+/*file c yang berisi modul-modul pada halalman game berlangsung, seperti menampilkan board,
+logika game, game result, dll.*/
+
+
+//**************//
+/* program modul*/
+//**************//
+
+//modul yang berisi modul-modul lain untuk membuat halaman saat game dimulai secara keseluruhan
 void View_GamePlay(Tile tiles[4][4], Player *player)
 {
+/*parameter :
+tiles : parameter input output (by adress) berisi angka pada board
+player  : parameter input output (by adress) berisi struct player (pemain saat ini)*/
+
     //***** Deklarasi Kamus data *****//
     bool is_repeat_program = true;
     int option, is_saved; 
@@ -20,7 +36,7 @@ void View_GamePlay(Tile tiles[4][4], Player *player)
     //***** Memulai Program *****//
 
     //* memeriksa apakah terdapat save data progress tiles *//
-    open_save_progress (tiles, player->username, &is_saved);
+    open_save_progress (tiles, player->username, &is_saved);        //## memanggil modul untuk memriksa apakah ada save progress 
 
     //jika tidak ada save data progress tiles
     if (is_saved == 0){
@@ -91,6 +107,7 @@ void View_GamePlay(Tile tiles[4][4], Player *player)
                 printf_center("press [ENTER] to play again", ((get_terminal_width('t') - 9)/2) + 12);
                 printf_center("press [ESC] to exit the game", ((get_terminal_width('t') - 9)/2) + 13);
                 //Press Enter untuk contunue playing / ESC untuk kembali ke lobby//
+
                 while(1){
                     option = getch();
                     if (option == ENTER) {      //jika memilih ENTER
@@ -125,6 +142,9 @@ void View_GamePlay(Tile tiles[4][4], Player *player)
         printBoard(tiles, player);				//## memanggil modul untuk membuat papan
         //kembali keatas......
     }
+
+    //*** Save Progress***/
+    //masuk jika kelaur game menggunakan ESC buka karena game_over
     if (escinput == true && player->username[0] != ' ' ) {
         clearscreen();
         printf_center("do you want to save the progress?", get_terminal_width('t')/2);

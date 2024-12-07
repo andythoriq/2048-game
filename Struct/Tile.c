@@ -4,17 +4,34 @@
 #include <time.h>
 #include "Tile.h"
 
+
+//nama author   : Andy Thoriq
+//nama file     : Player.c
+//deskripsi : 
+/*file c yang berisi struct tile (angka-angka pada board), 
+juga segala modul-modul yang berkaitan dengan
+manipulasi tiles*/
+
+
+//**************//
+/* program modul*/
+//**************//
+
+
+//modul untuk untuk mengisi tile dengan nilai baru
 void createTile(Tile * tile, int newValue)
 {
     setValue(tile, newValue);
     setColor(tile, AC_BLACK);
 }
 
+//modul untuk memperoleh nilai pada tile[i][j] sesuai i j yang di tulis
 int getValue(Tile tile)
 {
     return tile.value;
 }
 
+//modul untuk memperoleh warna sesuai  nilai dari angka yang dimasukan
 const char * getColor(Tile tile)
 {
     static char colorCopy[32];
@@ -23,17 +40,20 @@ const char * getColor(Tile tile)
     return colorCopy;
 }
 
+//modul untuk memberikan nilai baru pada salah satu indeks pada tile
 void setValue(Tile *tile, int newValue)
 {
     tile->value = newValue;
 }
 
+//modul untuk menentukan warna pada salah satu indeks tile sesuai nilai nya
 void setColor(Tile *tile, char newColor[])
 {
     strncpy(tile->color, newColor, sizeof(tile->color) - 1);
     tile->color[sizeof(tile->color) - 1] = '\0';
 }
 
+//modul untuk memberikan nilai dan warna pada salah satu indesk tile
 void setValueAndColor(Tile *tile, int newValue)
 {
     setValue(tile, newValue);
@@ -60,6 +80,7 @@ void setValueAndColor(Tile *tile, int newValue)
     }
 }
 
+//modul untuk mengosongkan seluruh tile dan memberikan 2 angka random pada posisi random
 void generateTiles(Tile tiles[4][4])
 {
 	int i, j;
@@ -73,6 +94,7 @@ void generateTiles(Tile tiles[4][4])
     fillNumberInRandomPosition(tiles);
 }
 
+//modul untuk menghapus seluruh isi pada tile
 void resetTiles(Tile tiles[4][4])
 {
     int i, j;
@@ -83,6 +105,7 @@ void resetTiles(Tile tiles[4][4])
     }
 }
 
+//modul untuk memberikan random angka pada random posisi
 void fillNumberInRandomPosition(Tile tiles[4][4])
 {
     int x, y = 0, number = 2;

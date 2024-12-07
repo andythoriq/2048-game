@@ -5,11 +5,26 @@
 
 #include "View_Tutorial.h"
 
+//nama author   : Nauval Khairiyan
+//nama file     : View_Tutorial.c
+//deskripsi : 
+/*file c yang berisi modul-modul untuk menampilkan halaman tutorial*/
+
+
+//**************//
+/* program modul*/
+//**************//
+
+//Modul untuk menampilkan halaman tutorial
 void View_Tutorial() 
 {
+	//kamus data
 	int i; //deklarasi index
+
+	//mendklarasikan posisi x dan y sudut kiri dan atas
 	int x_pos = (get_terminal_width('l') - 90)/2;
 	int y_pos = (get_terminal_width('t') - 16)/2; 
+
 
 	for (i = x_pos; i <= x_pos + 90; i++) { // Membuat Bingkai Atas dan bawah
 		gotoxy(i, y_pos);
@@ -26,11 +41,12 @@ void View_Tutorial()
 		printf("*");
 	}
 	
+	//teks yang akan di print
 	const char* text[] = {	
 	"                     ",
 	"HOW TO PLAY GAME 2048",
 	"                     ",
-	"1. Geser ubin ke atas, bawah, kiri, atau kanan menggunakan panah (keyboard/sentuhan).",
+	"1. Geser ubin ke atas, bawah, kiri, atau kanan menggunakan 'W''A''S''D' (keyboard)   ",
 	"2. Ubin dengan angka yang sama akan bergabung saat bertemu akan menghasilkan         ", 
     "   nilai totalnya (contoh: 2 + 2 = 4).                                               ",
 	"3. Setiap geseran menambahkan ubin baru bernilai 2 atau 4 secara acak di papan       ",
@@ -44,12 +60,14 @@ void View_Tutorial()
 	"                                                                                     "
 	};
 	
+
 	for (i = 1; i < 15; i++) { // Mencetak Teks dalam bingkai
 		gotoxy((get_terminal_width('l') - strlen(text[i]))/2, y_pos+i+2);
 		printf("%s", text[i]);
 	}	
 	printf("\n");
 	
+	//teks pada bawah halaman
 	printf_center ("[press 'ENTER' to return]", y_pos + 16 + 3 );
 
 	if ( getch() == ENTER){

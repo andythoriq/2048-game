@@ -1,10 +1,23 @@
 #include "Movement.h"
 
+//nama author   : Andy Thoriq
+//nama file     : Movement.c
+//deskripsi : 
+/*file c yang berisi modul untuk membuat dan menampilakan board
+pada halaman saat game dimulai. board digunakan sebagai tempat angka(tiles berada)*/
+
+//Modul untuk menggerakan angka pada board(tile) sesuai input {logika game}
 void move(char choice, Tile tiles[4][4], Player *p)
 {
+    //membersihkan layar
 	clearscreen();
+
+    //kamus data
 	int col, row, k, i, j, arr_before[4][4];
 
+    //**************//
+    /* program modul*/
+    //**************//
     for (i = 0; i < 4; i++) {
         for (j = 0; j < 4; j++) {
             arr_before[i][j] = getValue(tiles[i][j]);
