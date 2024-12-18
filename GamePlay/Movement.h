@@ -1,6 +1,8 @@
 #ifndef GAMEPLAY_H
 #define GAMEPLAY_H
 
+#include <ctype.h>
+
 #include "../Struct/Tile.h"
 #include "../Struct/Player.h"
 #include "../Utilities/Utilities.h"

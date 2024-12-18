@@ -1,3 +1,8 @@
+#include <string.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <time.h>
+
 #ifndef Tile_H
 #define Tile_H
 

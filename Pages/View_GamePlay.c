@@ -37,7 +37,6 @@ player  : parameter input output (by adress) berisi struct player (pemain saat i
 
     //* memeriksa apakah terdapat save data progress tiles *//
     open_save_progress (tiles, player->username, &is_saved);        //## memanggil modul untuk memriksa apakah ada save progress 
-
     //jika tidak ada save data progress tiles
     if (is_saved == 0){
         generateTiles(tiles);				//## memanggil modul untuk mengisi array dua dimensi

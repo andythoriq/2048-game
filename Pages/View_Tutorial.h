@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <string.h>
+
 #ifndef HOWTOPLAY_H
 #define HOWTOPLAY_H
 

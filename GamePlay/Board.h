@@ -1,6 +1,8 @@
 #ifndef Board_H
 #define Board_H
 
+#include <stdio.h>
+
 #include "../Struct/Tile.h"
 #include "../Struct/Player.h"
 

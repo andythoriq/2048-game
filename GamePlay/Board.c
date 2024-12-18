@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 #include "../Utilities/Utilities.h"
 
 #include "Board.h"

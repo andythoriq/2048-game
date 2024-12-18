@@ -39,7 +39,6 @@ player : parameter input output (by adress) berisi struct player yang bermain sa
 			is_repeat_program = 1;
 		}
 	}
-
 	return;
 }
 
@@ -51,9 +50,8 @@ player : parameter input output (by adress) berisi struct player yang bermain sa
 *nextkey : parameter input output (by adress) mengembalikan syarat program selesai atau kembali berulang*/
 
 	/*** Kamus data ***/
-	char input_name[10];
+	char input_name[11] = "";
 	int result;
-	int i;
 	
 	/*** Inisiasi posisi birder ***/
 	int left_border = (get_terminal_width('l') - 30) / 2;		//posisi x untuk border kiri
@@ -86,12 +84,11 @@ player : parameter input output (by adress) berisi struct player yang bermain sa
 
 	gotoxy(1, bottom_border + 3);			//membersihkan bacaan pada bawah border
 	printf("\033[K");						
-	
+
 	//jika nextkey 1 (username di input), maka memeriksa ada atau tidak nya usernma tersebut
 	if (*nextkey == 1){
 		username_found_result(player, input_name, nextkey);		//##memanggil modul untuk mencari username pada file data
 	}
-
 	play_sound(2);	//membunyikan sound efek
 }
 
@@ -167,7 +164,6 @@ input_name : parameter input output (by adress) berisi nama yang diinputkan oleh
     printf("\033[?25h");		//ANSI untuk memunculkan posisi kursor
     
     while(1){					//itterasi menunggu input
-    
 		input = getch();	//mendapatkan input tanpa enter
 		
 		//jika input = backspace//
@@ -210,7 +206,6 @@ input_name : parameter input output (by adress) berisi nama yang diinputkan oleh
 			i++;			
 		}
 	}
-	
 	printf("\033[?25l");		//menghilangkan tapmilan posisi kursor
 }
 
@@ -226,7 +221,6 @@ input_name : parameter input output (by adress) berisi nama yang diinputkan oleh
 	char temp_text[100];
 	int option;
 	int is_found;
-	int i;
 
 	/*** Inisiasi posisi border ***/
 	int left_border = (get_terminal_width('l') - 30) / 2;		//posisi x untuk border kiri
@@ -237,7 +231,7 @@ input_name : parameter input output (by adress) berisi nama yang diinputkan oleh
 	/*** Memeriksa username terdaftar atau tidak ***/
 	open_file_username(player, input_name, &is_found);			//## memanggil function open file untuk mencari username pada file Player_Score.txt
 	
-	if(is_found == 1) {
+	if (is_found == 1) {
 	//** kondisi jika terdaftar **/
 		sprintf(temp_text, "[ Name : %s | Highscore : %d | Highmove : %d ]", player->username, player->highscore, player->highmove);
 		printf_center ("username has been found", bottom_border + 2);

@@ -13,7 +13,7 @@ dan manipulasi file */
 
 
 // modul untuk membaca/mencari data berdasarkan username
-void open_file_username(Player *player, char targetUsername [10], int *is_found);
+void open_file_username(Player *player, char targetUsername [], int *is_found);
 
 //modul untuk menambahkan data baru kedalam file
 void add_newplayer_username (Player *player, char targetUsername []);

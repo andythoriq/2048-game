@@ -67,7 +67,7 @@ void View_LeaderBoard()
         printf("%d", player[i].totalwin); 
         gotoxy(left_border + 75, top_border+6+2*i);
         printf("%d", player[i].totallose);    
-        if ( i > 9){
+        if ( i >= 9){
             break;
         }              
     }

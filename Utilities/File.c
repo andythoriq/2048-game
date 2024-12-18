@@ -9,7 +9,7 @@ dan manipulasi file */
 
 
 // modul untuk membaca/mencari data berdasarkan username
-void open_file_username(Player *player, char targetUsername[10], int *is_found) 
+void open_file_username(Player *player, char targetUsername[], int *is_found) 
 {
     /* parameter :
     player : parameter input output (by adress) yang berisi struct player saat ini
@@ -18,8 +18,9 @@ void open_file_username(Player *player, char targetUsername[10], int *is_found)
     */
 
    //kamus data
+
     FILE *file;
-    char name[10] = "", record [50] = "";
+    char name[11], record [50];
     int highscore, highmove, totalwin, totallose;
     int found = 0;
 
@@ -31,15 +32,13 @@ void open_file_username(Player *player, char targetUsername[10], int *is_found)
     }
     // Cari username di dalam file
     fseek (file, 0, SEEK_SET);
-    while (fgets(record, sizeof(record), file)) {
-        sscanf(record,"%s", name);     
+    while (fgets(record, sizeof(record), file) != NULL) {
+        sscanf(record,"%s", name);    
         if (strcmp(name, targetUsername) == 0) {
             // Jika username ditemukan
             fseek (file, -strlen(record)-1, SEEK_CUR);
             fscanf(file, "%s %d %d %d %d", name, &highscore, &highmove, &totalwin, &totallose);
-            
             createPlayer(player, name, highscore, highmove, 0, 0, totalwin, totallose);
-
             *is_found = 1;
             found = 1;
             break;
@@ -87,8 +86,8 @@ player : parameter input output (by adress) yang berisi struct player yang berma
     //kamus data
     FILE *file;
     FILE *tempfile;
-    char record [50] = "", nama_yg_dicari[10] = "";
-    char name[10];
+    char record [50] = "", nama_yg_dicari[11] = "";
+    char name[11];
     int highscore, highmove, totalwin, totallose;
 
     //program
@@ -103,7 +102,7 @@ player : parameter input output (by adress) yang berisi struct player yang berma
     // Cari username di dalam file
     fseek (file, 0, SEEK_SET);
     while (fgets(record, sizeof(record), file) != NULL) {
-        sscanf(record,"%s", nama_yg_dicari);     
+        sscanf(record,"%s ", nama_yg_dicari);     
         if (strcmp(nama_yg_dicari, getUsername(player)) == 0) {
             // Jika username ditemukan
             fseek (tempfile, -1, SEEK_CUR);
@@ -216,7 +215,7 @@ username : parameter input yang berisi username player, digunakan untuk keyword 
     FILE *file;
     FILE *tempfile;
     int i,j, is_found = 0;
-    char name[10], record[50];
+    char name[11], record[50];
 
     //pprogram modul
     file = fopen("Tiles_Safe_data.txt", "r+");  
@@ -302,11 +301,10 @@ void open_save_progress (Tile tiles[4][4], char username[], int *is_save)
     FILE *file;
     FILE *tempfile;
     int i,j, is_found = 0;
-    char name[10], record[50];
+    char name[11], record[50];
     int temp;
 
     int found = 0;
-
 
     //programm
     file = fopen("Tiles_Safe_data.txt", "a+");  
@@ -345,7 +343,7 @@ void open_save_progress (Tile tiles[4][4], char username[], int *is_save)
     if (found == 0){
         // Jika username tidak ditemukan, tanda bahwa tidak ada save data akan dikembalikan ke modul oemnaggil
         *is_save = 0;
-    }    
+    }   
 }
 
 //Modul untuk mengosongkan seluruh isi pada file

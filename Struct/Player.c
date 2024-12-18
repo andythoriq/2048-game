@@ -1,4 +1,3 @@
-#include <string.h>
 #include "player.h"
 
 
@@ -14,7 +13,7 @@ yang berhubungan dengan manipulasi struct player*/
 //**************//
 
 //modul untuk menginput data pada subvar-subvar struct player
-void createPlayer(Player *player, char username[10], int highscore, int highmove, int currentscore, int currentmove, int totalwin, int totallose) {
+void createPlayer(Player *player, char username[], int highscore, int highmove, int currentscore, int currentmove, int totalwin, int totallose) {
     setUsername(player, username);
     setHighscore(player, highscore);
     setHighmove(player, highmove);
@@ -74,8 +73,8 @@ int getComparedHighMove(Player *p)
 // Setter implementations
 /*untuk mengisi data pada subvar Player dengan data baru*/
 void setUsername(Player *p, const char *username) {
-    strncpy(p->username, username, sizeof(p->username) - 1);
-    p->username[sizeof(p->username) - 1] = '\0'; // Ensure null termination
+    strncpy(p->username, username, sizeof(p->username));
+    //p->username[strlen(p->username) + 1] = '\0'; // Ensure null termination
 }
 
 void setHighscore(Player *p, int highscore) {

@@ -1,3 +1,5 @@
+#include <string.h>
+
 #ifndef PLAYER_H
 #define PLAYER_H
 
@@ -15,7 +17,7 @@ yang berhubungan dengan manipulasi struct player*/
 //deklarasi strcut player
 typedef struct Player
 {
-    char username[10];
+    char username[11];
     int highscore;
     int highmove;
     int currentscore;
@@ -25,7 +27,7 @@ typedef struct Player
 } Player;
 
 //modul untuk menginput data pada subvar-subvar struct player
-void createPlayer(Player *player, char username[10], int highscore, int highmove, int currentscore, int currentmove, int totalwin, int totallose);
+void createPlayer(Player *player, char username[], int highscore, int highmove, int currentscore, int currentmove, int totalwin, int totallose);
 
 // Getter
 /*untuk memperoleh nilai pada subvar struct*/

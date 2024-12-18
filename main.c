@@ -11,7 +11,7 @@ int main()
 {
 	//Kamus data
 	Player player;
-	char username[10] = "";
+	char username[11];
 	Tile tiles[4][4];
 	int done = 0, nextkey = 0, key, selectedarrow = 0;
 
@@ -40,7 +40,6 @@ int main()
 				case 0:
 					//jika menunjuk opsi halaman_login
 					halaman_login(&player, &nextkey);
-
 					//jika syarat nextkey terpenuhi, maka lanjut ke game dimulai
 					if (nextkey == 1){
 						/*game mulai*/

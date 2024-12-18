@@ -1,5 +1,4 @@
 #include "Movement.h"
-#include <ctype.h>
 
 //nama author   : Andy Thoriq
 //nama file     : Movement.c

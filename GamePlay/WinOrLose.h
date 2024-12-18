@@ -1,6 +1,7 @@
 #ifndef WINORLOSE_H
 #define WINORLOSE_H
 
+#include <stdio.h>
 #include <stdbool.h>
 #include "../Struct/Tile.h"
 #include "../Struct/Player.h"
